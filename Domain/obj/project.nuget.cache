@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "d8JnnyjCjiZ0qXjcnRRIKtbyQeO3Wgz18ryq22gZ0SaGecp5SEOXoxw4tIXge1DcdC1QQ5zgusXSpDBC2ZkyNg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\maxva\\source\\repos\\treff-backend\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\maxva\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\maxva\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
