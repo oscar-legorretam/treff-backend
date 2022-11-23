@@ -1,12 +1,19 @@
 using Application;
+using Application.Interfaces.Repositories.Base;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using Persistence.Context;
+using Persistence.Repositories.Base;
+using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace WebApi
 {
@@ -22,6 +29,17 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.MaxDepth = 24;
+                }
+            );
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddDbContext<treff_v2Context>(m => m.UseMySQL(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             #region Swagger
             services.AddSwaggerGen(c =>
             {
@@ -49,11 +67,19 @@ namespace WebApi
             services.AddApplication();
             services.AddPersistence(Configuration);
             services.AddControllers();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:3000");
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

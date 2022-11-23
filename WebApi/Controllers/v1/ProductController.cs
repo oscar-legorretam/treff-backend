@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Features.CategoryFeatures.Queries;
 using Application.Features.ProductFeatures.Commands;
 using Application.Features.ProductFeatures.Queries;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +30,7 @@ namespace WebApi.Controllers.v1
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await Mediator.Send(new GetAllProductsQuery()));
+            return Ok(await Mediator.Send(new GetAllCategoriesQuery()));
         }
         /// <summary>
         /// Gets Product Entity by Id.
