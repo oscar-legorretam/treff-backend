@@ -10,18 +10,17 @@ using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    public class CategoryRepository : Repository<Categories>, ICategoryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
         public CategoryRepository(treff_v2Context treffContext) : base(treffContext) { }
 
-        public async Task<List<Categories>> GetAllCategoriesAsync()
+        public async Task<List<Category>> GetAllCategoriesAsync()
         {
             var categories = _treffContext.Categories
-                .Where(c => c.Deleted == 0)
+                .Where(c => c.Deleted == 0 && c.Parent == null)
                 .Include(c => c.SubCategories)
-                .ThenInclude(s => s.Category)
                 .ThenInclude(s => s.SubCategories)
-                .ThenInclude(s => s.Category);
+                .ThenInclude(s => s.Parent);
             return await categories.ToListAsync();
         }
     }

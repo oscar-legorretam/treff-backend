@@ -16,8 +16,11 @@ namespace Persistence.Context
         {
         }
 
-        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<SubCategories> SubCategories { get; set; }
+        public virtual DbSet<Freelancer> Freelancers { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<Package> Packages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,7 +33,7 @@ namespace Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Categories>(entity =>
+            modelBuilder.Entity<Category>(entity =>
             {
                 entity.ToTable("categories");
 
@@ -40,19 +43,17 @@ namespace Persistence.Context
 
                 entity.Property(e => e.Deleted)
                     .HasColumnName("deleted")
-                    .HasColumnType("int(11)");
+                    .HasColumnType("int(11)")
+                    .HasDefaultValue(0);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnName("name")
                     .HasMaxLength(200);
 
-                entity.HasMany(e => e.SubCategories)
-                .WithOne(g => g.Category)
-                .HasPrincipalKey(category => category.Id)
-                .HasForeignKey(f => f.IdCategory)
-                .IsRequired(false)
-                .OnDelete(DeleteBehavior.NoAction);
+                entity.HasOne(s => s.Parent)
+                    .WithMany(m => m.SubCategories)
+                    .HasForeignKey(e => e.ParentId);
             });
 
             modelBuilder.Entity<SubCategories>(entity =>
@@ -71,11 +72,11 @@ namespace Persistence.Context
                     .HasColumnName("id_sub_category")
                     .HasColumnType("int(11)");
 
-                entity
-                    .HasOne(bc => bc.Category)
-                    .WithMany(c => c.SubCategories)
-                    .HasForeignKey(bc => bc.IdCategory)
-                    .IsRequired(false);
+                //entity
+                //    .HasOne(bc => bc.Category)
+                //    .WithMany(c => c.SubCategories)
+                //    .HasForeignKey(bc => bc.IdCategory)
+                //    .IsRequired(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

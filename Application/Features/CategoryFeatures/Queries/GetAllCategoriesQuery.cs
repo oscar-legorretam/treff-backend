@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace Application.Features.CategoryFeatures.Queries
 {
-    public class GetAllCategoriesQuery : IRequest<IEnumerable<Categories>>
+    public class GetAllCategoriesQuery : IRequest<IEnumerable<Category>>
     {
 
-        public class GetAllCategoriesQueryHandler : IRequestHandler<GetAllCategoriesQuery, IEnumerable<Categories>>
+        public class GetAllCategoriesQueryHandler : IRequestHandler<GetAllCategoriesQuery, IEnumerable<Category>>
         {
             private readonly ICategoryRepository _context;
             public GetAllCategoriesQueryHandler(ICategoryRepository context)
             {
                 _context = context;
             }
-            public async Task<IEnumerable<Categories>> Handle(GetAllCategoriesQuery query, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Category>> Handle(GetAllCategoriesQuery query, CancellationToken cancellationToken)
             {
                 var productList = await _context.GetAllCategoriesAsync();
                 if (productList == null)

@@ -39,5 +39,32 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.ServiceController.GetAll">
+            <summary>
+            Gets all Products.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.ServiceController.GetByCategoryId(System.Int32)">
+            <summary>
+            Gets Service Entity by Category Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.ServiceController.GetPremiumByCategoryId(System.Int32)">
+            <summary>
+            Gets Service Entity by Category Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.ServiceController.GetPremiumLimitId(System.Int32)">
+            <summary>
+            Gets Service Entity by limit.
+            </summary>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

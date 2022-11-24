@@ -8,6 +8,6 @@ namespace Domain.Entities
         public int Id { get; set; }
         public int IdCategory { get; set; }
         public int IdSubCategory { get; set; }
-        public Categories Category { get; set; }
+        public Category Category { get; set; }
     }
 }

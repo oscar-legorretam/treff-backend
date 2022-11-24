@@ -25,6 +25,7 @@ namespace Persistence
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IServiceRepository, ServiceRepository>();
         }
     }
 }
