@@ -52,10 +52,22 @@ namespace WebApi.Controllers.v1
         /// <param name="limit"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("limit/{limit}")]
+        [Route("highlightLimit/{limit}")]
         public async Task<IActionResult> GetPremiumLimitId(int limit)
         {
             return Ok(await Mediator.Send(new GetAllServicesPremiumLimitQuery { Limit = limit }));
+        }
+
+        /// <summary>
+        /// Gets Service Entity by limit.
+        /// </summary>
+        /// <param name="limit"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("limit/{limit}")]
+        public async Task<IActionResult> GetLimitId(int limit)
+        {
+            return Ok(await Mediator.Send(new GetAllServicesLimitQuery { Limit = limit }));
         }
 
     }

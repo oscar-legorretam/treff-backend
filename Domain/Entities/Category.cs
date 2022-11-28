@@ -14,5 +14,6 @@ namespace Domain.Entities
         public string VerticalImage { get; set; }
         public virtual List<Category> SubCategories { get; set; }
         public virtual Category Parent { get; set; }
+        public virtual List<Service> Services { get; set; }
     }
 }

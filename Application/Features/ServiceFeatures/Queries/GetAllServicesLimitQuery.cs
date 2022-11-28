@@ -11,19 +11,19 @@ using System.Threading.Tasks;
 
 namespace Application.Features.ServiceFeatures.Queries
 {
-    public class GetAllServicesByCategoryIdQuery : IRequest<IEnumerable<Service>>
+    public class GetAllServicesLimitQuery : IRequest<IEnumerable<Service>>
     {
-        public int Id { get; set; }
-        public class GetAllServicesByCategoryIdQueryHandler : IRequestHandler<GetAllServicesByCategoryIdQuery, IEnumerable<Service>>
+        public int Limit { get; set; }
+        public class GetAllServicesLimitQueryHandler : IRequestHandler<GetAllServicesLimitQuery, IEnumerable<Service>>
         {
             private readonly IServiceRepository _context;
-            public GetAllServicesByCategoryIdQueryHandler(IServiceRepository context)
+            public GetAllServicesLimitQueryHandler(IServiceRepository context)
             {
                 _context = context;
             }
-            public async Task<IEnumerable<Service>> Handle(GetAllServicesByCategoryIdQuery query, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Service>> Handle(GetAllServicesLimitQuery query, CancellationToken cancellationToken)
             {
-                var serviceList = await _context.GetAllServicesByCategoryIdAsync(query.Id);
+                var serviceList = await _context.GetAllServicesAsync(query.Limit);
                 if (serviceList == null)
                 {
                     return null;

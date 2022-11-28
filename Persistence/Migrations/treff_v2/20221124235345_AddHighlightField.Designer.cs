@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Context;
 
 namespace Persistence.Migrations.treff_v2
 {
     [DbContext(typeof(treff_v2Context))]
-    partial class treff_v2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221124235345_AddHighlightField")]
+    partial class AddHighlightField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,9 +88,6 @@ namespace Persistence.Migrations.treff_v2
                         .IsRequired()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10);
-
-                    b.Property<string>("Photo")
-                        .HasColumnType("text");
 
                     b.Property<bool>("Verified")
                         .HasColumnType("tinyint(1)");
@@ -224,7 +223,7 @@ namespace Persistence.Migrations.treff_v2
             modelBuilder.Entity("Domain.Entities.Service", b =>
                 {
                     b.HasOne("Domain.Entities.Category", "Category")
-                        .WithMany("Services")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

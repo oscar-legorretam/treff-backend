@@ -30,6 +30,10 @@ namespace Domain.Entities
 		public bool Active { get; set; } = true;
 
 		[Required]
-		public bool Premium { get; set; } = false;
+		public bool Verified { get; set; } = false;
+
+		[Required]
+		public bool Invoice { get; set; } = false;
+		public string Photo { get; set; }
 	}
 }

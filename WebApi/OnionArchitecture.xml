@@ -66,5 +66,23 @@
             <param name="limit"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.ServiceController.GetLimitId(System.Int32)">
+            <summary>
+            Gets Service Entity by limit.
+            </summary>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.API.Filters.ExceptionFilter">
+            <summary>
+            Manages the exceptions in controllers
+            </summary>
+        </member>
+        <member name="M:WebApi.API.Filters.ExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            Create an ExceptionContext if an Exceptions is throwed
+            </summary>
+            <param name="context"></param>
+        </member>
     </members>
 </doc>

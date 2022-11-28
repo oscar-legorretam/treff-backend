@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace Application.Features.ServiceFeatures.Queries
 {
-    public class GetAllServicesPremiumLimitQuery : IRequest<IEnumerable<Package>>
+    public class GetAllServicesPremiumLimitQuery : IRequest<IEnumerable<Service>>
     {
         public int Limit { get; set; }
-        public class GetAllServicesPremiumLimitQueryHandler : IRequestHandler<GetAllServicesPremiumLimitQuery, IEnumerable<Package>>
+        public class GetAllServicesPremiumLimitQueryHandler : IRequestHandler<GetAllServicesPremiumLimitQuery, IEnumerable<Service>>
         {
             private readonly IServiceRepository _context;
             public GetAllServicesPremiumLimitQueryHandler(IServiceRepository context)
             {
                 _context = context;
             }
-            public async Task<IEnumerable<Package>> Handle(GetAllServicesPremiumLimitQuery query, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Service>> Handle(GetAllServicesPremiumLimitQuery query, CancellationToken cancellationToken)
             {
                 var serviceList = await _context.GetAllServicesPremiumAsync(query.Limit);
                 if (serviceList == null)

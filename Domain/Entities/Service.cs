@@ -39,5 +39,10 @@ namespace Domain.Entities
 		[ForeignKey("FreelancerId")]
 		public Freelancer Freelancer { get; set; }
 
+		[Required]
+		public bool Highlight { get; set; } = false;
+
+		[Required]
+		public bool ExpressDelivery { get; set; } = false;
 	}
 }

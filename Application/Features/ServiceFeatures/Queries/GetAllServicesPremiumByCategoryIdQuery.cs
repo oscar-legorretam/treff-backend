@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace Application.Features.ServiceFeatures.Queries
 {
-    public class GetAllServicesPremiumByCategoryIdQuery : IRequest<IEnumerable<Package>>
+    public class GetAllServicesPremiumByCategoryIdQuery : IRequest<IEnumerable<Service>>
     {
         public int Id { get; set; }
-        public class GetAllServicesPremiumByCategoryIdQueryHandler : IRequestHandler<GetAllServicesPremiumByCategoryIdQuery, IEnumerable<Package>>
+        public class GetAllServicesPremiumByCategoryIdQueryHandler : IRequestHandler<GetAllServicesPremiumByCategoryIdQuery, IEnumerable<Service>>
         {
             private readonly IServiceRepository _context;
             public GetAllServicesPremiumByCategoryIdQueryHandler(IServiceRepository context)
             {
                 _context = context;
             }
-            public async Task<IEnumerable<Package>> Handle(GetAllServicesPremiumByCategoryIdQuery query, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Service>> Handle(GetAllServicesPremiumByCategoryIdQuery query, CancellationToken cancellationToken)
             {
                 var serviceList = await _context.GetAllServicesPremiumByCategoryIdAsync(query.Id);
                 if (serviceList == null)
