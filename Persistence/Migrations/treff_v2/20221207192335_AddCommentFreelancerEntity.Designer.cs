@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Context;
 
 namespace Persistence.Migrations.treff_v2
 {
     [DbContext(typeof(treff_v2Context))]
-    partial class treff_v2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221207192335_AddCommentFreelancerEntity")]
+    partial class AddCommentFreelancerEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,12 +79,7 @@ namespace Persistence.Migrations.treff_v2
                         .HasColumnType("varchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -131,8 +128,8 @@ namespace Persistence.Migrations.treff_v2
                     b.Property<string>("Photo")
                         .HasColumnType("text");
 
-                    b.Property<double>("Score")
-                        .HasColumnType("double");
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
@@ -147,27 +144,6 @@ namespace Persistence.Migrations.treff_v2
                     b.HasKey("Id");
 
                     b.ToTable("Freelancers");
-                });
-
-            modelBuilder.Entity("Domain.Entities.FreelancerComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CommentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FreelancerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("FreelancerId");
-
-                    b.ToTable("FreelancerComments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Package", b =>
@@ -188,9 +164,6 @@ namespace Persistence.Migrations.treff_v2
                         .IsRequired()
                         .HasColumnType("varchar(200)")
                         .HasMaxLength(200);
-
-                    b.Property<int>("NumReviews")
-                        .HasColumnType("int");
 
                     b.Property<bool>("Premium")
                         .HasColumnType("tinyint(1)");
@@ -299,75 +272,11 @@ namespace Persistence.Migrations.treff_v2
                     b.ToTable("sub_categories");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Mail")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10);
-
-                    b.Property<string>("Photo")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Verified")
-                        .HasColumnType("tinyint(1)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("Domain.Entities.Category", b =>
                 {
                     b.HasOne("Domain.Entities.Category", "Parent")
                         .WithMany("SubCategories")
                         .HasForeignKey("ParentId");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Comment", b =>
-                {
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.FreelancerComment", b =>
-                {
-                    b.HasOne("Domain.Entities.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Freelancer", "Freelancer")
-                        .WithMany("FreelancerComments")
-                        .HasForeignKey("FreelancerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Package", b =>

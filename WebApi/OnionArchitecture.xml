@@ -41,36 +41,43 @@
         </member>
         <member name="M:WebApi.Controllers.v1.ServiceController.GetAll">
             <summary>
-            Gets all Products.
+            Gets all Categories.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Controllers.v1.ServiceController.GetByCategoryId(System.Int32)">
+        <member name="M:WebApi.Controllers.v1.ServiceController.GetById(System.Int32)">
+            <summary>
+            Gets Service Entity by Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.ServiceController.GetByCategoryId(Application.Features.ServiceFeatures.Queries.GetAllServicesByCategoryIdQuery)">
             <summary>
             Gets Service Entity by Category Id.
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Controllers.v1.ServiceController.GetPremiumByCategoryId(System.Int32)">
+        <member name="M:WebApi.Controllers.v1.ServiceController.GetPremiumByCategoryId(Application.Features.ServiceFeatures.Queries.GetAllServicesPremiumByCategoryIdQuery)">
             <summary>
             Gets Service Entity by Category Id.
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Controllers.v1.ServiceController.GetPremiumLimitId(System.Int32)">
+        <member name="M:WebApi.Controllers.v1.ServiceController.GetPremiumLimitId(Application.Features.ServiceFeatures.Queries.GetAllServicesPremiumLimitQuery)">
             <summary>
             Gets Service Entity by limit.
             </summary>
-            <param name="limit"></param>
+            <param name="command"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Controllers.v1.ServiceController.GetLimitId(System.Int32)">
+        <member name="M:WebApi.Controllers.v1.ServiceController.GetLimitId(Application.Features.ServiceFeatures.Queries.GetAllServicesLimitQuery)">
             <summary>
             Gets Service Entity by limit.
             </summary>
-            <param name="limit"></param>
+            <param name="command"></param>
             <returns></returns>
         </member>
         <member name="T:WebApi.API.Filters.ExceptionFilter">

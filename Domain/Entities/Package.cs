@@ -27,5 +27,7 @@ namespace Domain.Entities
 
 		[ForeignKey("ServiceId")]
 		public Service Service { get; set; }
+		[Required]
+		public int NumReviews { get; set; } = 0;
 	}
 }

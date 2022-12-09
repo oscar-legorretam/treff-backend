@@ -9,9 +9,10 @@ namespace Application.Interfaces.Repositories
 {
     public interface IServiceRepository : IRepository<Service>
     {
-        Task<List<Service>> GetAllServicesByCategoryIdAsync(int categoryId);
-        Task<List<Service>> GetAllServicesPremiumByCategoryIdAsync(int categoryId);
-        Task<List<Service>> GetAllServicesPremiumAsync(int limit);
-        Task<List<Service>> GetAllServicesAsync(int limit);
+        Task<List<Service>> GetAllServicesByCategoryIdAsync(int categoryId, bool byFreelance = false);
+        Task<List<Service>> GetAllServicesPremiumByCategoryIdAsync(int categoryId, bool byFreelance = false);
+        Task<List<Service>> GetAllServicesPremiumAsync(int limit, bool byFreelance = false);
+        Task<List<Service>> GetAllServicesAsync(int limit, bool byFreelance = false);
+        Task<Service> GetServiceByIdAsync(int id);
     }
 }

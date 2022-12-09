@@ -15,7 +15,7 @@ namespace WebApi.Controllers.v1
     public class ServiceController : BaseApiController
     {
         /// <summary>
-        /// Gets all Products.
+        /// Gets all Categories.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -24,50 +24,60 @@ namespace WebApi.Controllers.v1
             return Ok(await Mediator.Send(new GetAllCategoriesQuery()));
         }
         /// <summary>
-        /// Gets Service Entity by Category Id.
+        /// Gets Service Entity by Id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("category/{id}")]
-        public async Task<IActionResult> GetByCategoryId(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await Mediator.Send(new GetAllServicesByCategoryIdQuery { Id = id }));
+            return Ok(await Mediator.Send(new GetServiceByIdQuery { Id = id }));
         }
         /// <summary>
         /// Gets Service Entity by Category Id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("categoryPremium/{id}")]
-        public async Task<IActionResult> GetPremiumByCategoryId(int id)
+        [HttpPost]
+        [Route("category")]
+        public async Task<IActionResult> GetByCategoryId(GetAllServicesByCategoryIdQuery command)
         {
-            return Ok(await Mediator.Send(new GetAllServicesPremiumByCategoryIdQuery { Id = id }));
+            return Ok(await Mediator.Send(command));
+        }
+        /// <summary>
+        /// Gets Service Entity by Category Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("categoryPremium")]
+        public async Task<IActionResult> GetPremiumByCategoryId(GetAllServicesPremiumByCategoryIdQuery command)
+        {
+            return Ok(await Mediator.Send(command));
         }
 
         /// <summary>
         /// Gets Service Entity by limit.
         /// </summary>
-        /// <param name="limit"></param>
+        /// <param name="command"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("highlightLimit/{limit}")]
-        public async Task<IActionResult> GetPremiumLimitId(int limit)
+        [HttpPost]
+        [Route("highlightLimit")]
+        public async Task<IActionResult> GetPremiumLimitId(GetAllServicesPremiumLimitQuery command)
         {
-            return Ok(await Mediator.Send(new GetAllServicesPremiumLimitQuery { Limit = limit }));
+            return Ok(await Mediator.Send(command));
         }
 
         /// <summary>
         /// Gets Service Entity by limit.
         /// </summary>
-        /// <param name="limit"></param>
+        /// <param name="command"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("limit/{limit}")]
-        public async Task<IActionResult> GetLimitId(int limit)
+        [HttpPost]
+        [Route("limit")]
+        public async Task<IActionResult> GetLimitId(GetAllServicesLimitQuery command)
         {
-            return Ok(await Mediator.Send(new GetAllServicesLimitQuery { Limit = limit }));
+            return Ok(await Mediator.Send(command));
         }
 
     }

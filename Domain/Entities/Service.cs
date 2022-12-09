@@ -26,7 +26,7 @@ namespace Domain.Entities
 		public string KeyWords { get; set; }
 
 		[Required]
-		[MaxLength(1200)]
+		[MaxLength(5200)]
 		public string Description { get; set; }
 		[Required]
 		[MaxLength(200)]
@@ -44,5 +44,6 @@ namespace Domain.Entities
 
 		[Required]
 		public bool ExpressDelivery { get; set; } = false;
+		public ICollection<ServiceImage> ServiceImages { get; set; }
 	}
 }

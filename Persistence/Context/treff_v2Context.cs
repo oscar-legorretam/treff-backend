@@ -21,6 +21,10 @@ namespace Persistence.Context
         public virtual DbSet<Freelancer> Freelancers { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
+        public virtual DbSet<ServiceImage> ServiceImages { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<FreelancerComment> FreelancerComments { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -14,6 +14,7 @@ namespace Application.Features.ServiceFeatures.Queries
     public class GetAllServicesLimitQuery : IRequest<IEnumerable<Service>>
     {
         public int Limit { get; set; }
+        public bool ByFreelancer { get; set; }
         public class GetAllServicesLimitQueryHandler : IRequestHandler<GetAllServicesLimitQuery, IEnumerable<Service>>
         {
             private readonly IServiceRepository _context;
@@ -23,7 +24,7 @@ namespace Application.Features.ServiceFeatures.Queries
             }
             public async Task<IEnumerable<Service>> Handle(GetAllServicesLimitQuery query, CancellationToken cancellationToken)
             {
-                var serviceList = await _context.GetAllServicesAsync(query.Limit);
+                var serviceList = await _context.GetAllServicesAsync(query.Limit, query.ByFreelancer);
                 if (serviceList == null)
                 {
                     return null;

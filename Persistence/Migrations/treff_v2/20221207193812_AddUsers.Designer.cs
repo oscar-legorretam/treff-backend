@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Context;
 
 namespace Persistence.Migrations.treff_v2
 {
     [DbContext(typeof(treff_v2Context))]
-    partial class treff_v2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221207193812_AddUsers")]
+    partial class AddUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,8 +133,8 @@ namespace Persistence.Migrations.treff_v2
                     b.Property<string>("Photo")
                         .HasColumnType("text");
 
-                    b.Property<double>("Score")
-                        .HasColumnType("double");
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
@@ -147,27 +149,6 @@ namespace Persistence.Migrations.treff_v2
                     b.HasKey("Id");
 
                     b.ToTable("Freelancers");
-                });
-
-            modelBuilder.Entity("Domain.Entities.FreelancerComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CommentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FreelancerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("FreelancerId");
-
-                    b.ToTable("FreelancerComments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Package", b =>
@@ -328,9 +309,6 @@ namespace Persistence.Migrations.treff_v2
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<string>("Photo")
-                        .HasColumnType("text");
-
                     b.Property<bool>("Verified")
                         .HasColumnType("tinyint(1)");
 
@@ -351,21 +329,6 @@ namespace Persistence.Migrations.treff_v2
                     b.HasOne("Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.FreelancerComment", b =>
-                {
-                    b.HasOne("Domain.Entities.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Freelancer", "Freelancer")
-                        .WithMany("FreelancerComments")
-                        .HasForeignKey("FreelancerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

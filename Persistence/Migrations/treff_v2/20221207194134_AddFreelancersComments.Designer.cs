@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Context;
 
 namespace Persistence.Migrations.treff_v2
 {
     [DbContext(typeof(treff_v2Context))]
-    partial class treff_v2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221207194134_AddFreelancersComments")]
+    partial class AddFreelancersComments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,8 +133,8 @@ namespace Persistence.Migrations.treff_v2
                     b.Property<string>("Photo")
                         .HasColumnType("text");
 
-                    b.Property<double>("Score")
-                        .HasColumnType("double");
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
@@ -328,9 +330,6 @@ namespace Persistence.Migrations.treff_v2
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<string>("Photo")
-                        .HasColumnType("text");
-
                     b.Property<bool>("Verified")
                         .HasColumnType("tinyint(1)");
 
@@ -364,7 +363,7 @@ namespace Persistence.Migrations.treff_v2
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Freelancer", "Freelancer")
-                        .WithMany("FreelancerComments")
+                        .WithMany()
                         .HasForeignKey("FreelancerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

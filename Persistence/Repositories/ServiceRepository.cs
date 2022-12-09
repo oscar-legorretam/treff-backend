@@ -33,11 +33,11 @@ namespace Persistence.Repositories
             }
             return catIds;
         }
-        public async Task<List<Service>> GetAllServicesByCategoryIdAsync(int categoryId)
+        public async Task<List<Service>> GetAllServicesByCategoryIdAsync(int categoryId, bool byFreelance = false)
         {
             var categories = await _treffContext.Categories
                 .Where(c => c.Deleted == 0
-                    && c.Parent == null
+                    //&& c.Parent == null
                     && c.Id == categoryId)
                 .Include(c => c.SubCategories)
                 .ThenInclude(s => s.SubCategories)
@@ -63,14 +63,22 @@ namespace Persistence.Repositories
                 }
             );
 
-            return services;
+            if (!byFreelance)
+            {
+                return services;
+            }
+            else
+            {
+                return services.GroupBy(s => s.FreelancerId)
+                .Select(s => s.First()).ToList();
+            }
         }
 
-        public async Task<List<Service>> GetAllServicesPremiumByCategoryIdAsync(int categoryId)
+        public async Task<List<Service>> GetAllServicesPremiumByCategoryIdAsync(int categoryId, bool byFreelance = false)
         {
             var categories = await _treffContext.Categories
                 .Where(c => c.Deleted == 0
-                    && c.Parent == null
+                    //&& c.Parent == null
                     && c.Id == categoryId)
                 .Include(c => c.SubCategories)
                 .ThenInclude(s => s.SubCategories)
@@ -97,10 +105,18 @@ namespace Persistence.Repositories
             }
             );
 
-            return services;
+            if (!byFreelance)
+            {
+                return services;
+            }
+            else
+            {
+                return services.GroupBy(s => s.FreelancerId)
+                .Select(s => s.First()).ToList();
+            }
         }
 
-        public async Task<List<Service>> GetAllServicesPremiumAsync(int limit)
+        public async Task<List<Service>> GetAllServicesPremiumAsync(int limit, bool byFreelance = false)
         {
             var services = await _treffContext.Services
                 .Where(s => s.Highlight == true)
@@ -113,10 +129,18 @@ namespace Persistence.Repositories
 
             services.ForEach(x => x.Packages = x.Packages.OrderBy(y => y.Cost).ToList());
 
-            return services;
+            if (!byFreelance)
+            {
+                return services;
+            }
+            else
+            {
+                return services.GroupBy(s => s.FreelancerId)
+                .Select(s => s.First()).ToList();
+            }
         }
 
-        public async Task<List<Service>> GetAllServicesAsync(int limit)
+        public async Task<List<Service>> GetAllServicesAsync(int limit, bool byFreelance = false)
         {
             var services = await _treffContext.Services
                 .Include(s => s.Freelancer)
@@ -128,15 +152,33 @@ namespace Persistence.Repositories
 
             services.ForEach(x => x.Packages = x.Packages.OrderBy(y => y.Cost).ToList());
 
-            return services;
+            if (!byFreelance)
+            {
+                return services;
+            }
+            else
+            {
+                return services.GroupBy(s => s.FreelancerId)
+                .Select(s => s.First()).ToList();
+            }
         }
 
-        private Service SortInclude(Service p)
+        public async Task<Service> GetServiceByIdAsync(int id)
         {
-            p.Packages = (p.Packages as HashSet<Package>)?
-                .OrderBy(s => s.Cost)
-                .ToHashSet<Package>();
-            return p;
+            var service = await _treffContext.Services
+                .Include(s => s.Freelancer)
+                .ThenInclude(f => f.FreelancerComments)
+                .ThenInclude(c => c.Comment)
+                .ThenInclude(u => u.User)
+                .Include(s => s.Packages)
+                .Include(s => s.Category)
+                .Include(s => s.ServiceImages)
+                .Where(s => s.Id == id)
+                .FirstOrDefaultAsync();
+
+            service.Packages = service.Packages.OrderBy(y => y.Cost).ToList();
+
+            return service;
         }
     }
 }
