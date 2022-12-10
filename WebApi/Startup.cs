@@ -44,16 +44,9 @@ namespace WebApi
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddDbContext<treff_v2Context>(m => m.UseMySQL(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             #region Swagger
-            services.AddSwaggerGen(c =>
-            {
-                c.IncludeXmlComments(string.Format(@"{0}\TreffServices.xml", System.AppDomain.CurrentDomain.BaseDirectory));
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "TreffServices",
-                });
+            //services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
 
-            });
             #endregion
             #region Api Versioning
             // Add API Versioning to the Project
@@ -109,10 +102,7 @@ namespace WebApi
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TreffServices");
-            });
+            app.UseSwaggerUI();
             #endregion
             app.UseEndpoints(endpoints =>
             {
