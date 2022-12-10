@@ -19,6 +19,16 @@ namespace WebApi.Controllers.v1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("test")]
+        public async Task<IActionResult> Test()
+        {
+            return Ok("hola mundo Devops!");
+        }
+        /// <summary>
+        /// Gets all Categories.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await Mediator.Send(new GetAllCategoriesQuery()));
