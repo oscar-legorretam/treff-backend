@@ -22,7 +22,7 @@ namespace WebApi.Controllers.v1
         [Route("test")]
         public async Task<IActionResult> Test()
         {
-            return Ok("hola mundo Devops!");
+            return Ok("hola mundo Devops! ");
         }
         /// <summary>
         /// Gets all Categories.
