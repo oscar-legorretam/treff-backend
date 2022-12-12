@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-//using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -14,15 +14,10 @@ using Microsoft.OpenApi.Models;
 using Persistence;
 using Persistence.Context;
 using Persistence.Repositories.Base;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using Pomelo.EntityFrameworkCore.MySql.Storage;
-using Pomelo.EntityFrameworkCore.MySql;
 using System;
 using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using Microsoft.EntityFrameworkCore;
-using MySql.EntityFrameworkCore.Extensions;
 
 namespace WebApi
 {
@@ -49,15 +44,8 @@ namespace WebApi
             );
             services.AddMediatR(Assembly.GetExecutingAssembly());
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            var serverVersion = ServerVersion.AutoDetect(connectionString);
             services.AddDbContext<treff_v2Context>(m =>
-                    m.UseMySql(connectionString,
-        //serverVersion,
-        mySqlOptions =>
-            mySqlOptions.EnableRetryOnFailure(
-                maxRetryCount: 10,
-                maxRetryDelay: TimeSpan.FromSeconds(30),
-                errorNumbersToAdd: null)),
+                    m.UseMySQL(connectionString),
                 ServiceLifetime.Transient);
             #region Swagger
             //services.AddEndpointsApiExplorer();
