@@ -42,7 +42,7 @@ namespace WebApi
                 }
             );
             services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddDbContext<treff_v2Context>(m => m.UseMySQL(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+            services.AddDbContext<treff_v2Context>(m => m.UseMySQL(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Singleton);
             #region Swagger
             //services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
