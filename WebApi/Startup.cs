@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using Persistence;
 using Persistence.Context;
 using Persistence.Repositories.Base;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -42,7 +43,10 @@ namespace WebApi
                 }
             );
             services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddDbContext<treff_v2Context>(m => m.UseMySQL(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Singleton);
+            services.AddDbContext<treff_v2Context>(m => 
+                    m.UseMySQL(Configuration.GetConnectionString("DefaultConnection"),
+                    opt => opt.CommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds)), 
+                ServiceLifetime.Singleton);
             #region Swagger
             //services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
