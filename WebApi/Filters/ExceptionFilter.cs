@@ -24,7 +24,7 @@ namespace WebApi.API.Filters
                 statusCode = (int)HttpStatusCode.BadRequest;
             }
 
-            context.Result = new JsonResult(exception.Message)
+            context.Result = new JsonResult(exception)
             {
                 StatusCode = statusCode
             };
