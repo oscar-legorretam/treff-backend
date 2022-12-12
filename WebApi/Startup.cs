@@ -102,7 +102,10 @@ namespace WebApi
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TreffServices");
+            });
             #endregion
             app.UseEndpoints(endpoints =>
             {
