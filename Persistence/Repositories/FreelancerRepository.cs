@@ -15,6 +15,18 @@ namespace Persistence.Repositories
     {
         public FreelancerRepository(treff_v2Context treffContext) : base(treffContext) { }
 
+        public async Task<Freelancer> GetFreelancerByIdAsync(int freelancerId)
+        {
+            var freelancer = await _treffContext.Freelancers
+                .Include(s => s.FreelancerComments)
+                .ThenInclude(c => c.Comment)
+                .ThenInclude(u => u.User)
+                .Where(s => s.Id == freelancerId)
+                .FirstOrDefaultAsync();
+
+
+            return freelancer;
+        }
         public async Task<List<Service>> GetAllServicesByFreelancerIdAsync(int freelancerId)
         {
             var services = await _treffContext.Services

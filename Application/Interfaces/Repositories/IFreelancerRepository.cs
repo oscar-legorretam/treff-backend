@@ -9,6 +9,7 @@ namespace Application.Interfaces.Repositories
 {
     public interface IFreelancerRepository : IRepository<Freelancer>
     {
+        Task<Freelancer> GetFreelancerByIdAsync(int freelancerId);
         Task<List<Service>> GetAllServicesByFreelancerIdAsync(int freelancerId);
     }
 }

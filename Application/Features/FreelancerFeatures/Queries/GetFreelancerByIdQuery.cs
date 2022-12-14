@@ -23,7 +23,7 @@ namespace Application.Features.FreelancerFeatures.Queries
             }
             public async Task<Freelancer> Handle(GetFreelancerByIdQuery query, CancellationToken cancellationToken)
             {
-                var freelancer = await _context.GetByIdAsync(query.Id);
+                var freelancer = await _context.GetFreelancerByIdAsync(query.Id);
                 if (freelancer == null)
                 {
                     return null;
