@@ -26,6 +26,7 @@ namespace Persistence
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IServiceRepository, ServiceRepository>();
+            services.AddTransient<IFreelancerRepository, FreelancerRepository>();
         }
     }
 }

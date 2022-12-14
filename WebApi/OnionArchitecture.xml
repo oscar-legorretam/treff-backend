@@ -4,6 +4,20 @@
         <name>WebApi</name>
     </assembly>
     <members>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.GetById(System.Int32)">
+            <summary>
+            Gets Freelancer Entity by Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.GetByCategoryId(System.Int32)">
+            <summary>
+            Gets Services Entity by Freelancer Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.ProductController.Create(Application.Features.ProductFeatures.Commands.CreateProductCommand)">
             <summary>
             Creates a New Product.
