@@ -11,5 +11,6 @@ namespace Application.Interfaces.Repositories
     {
         Task<Freelancer> GetFreelancerByIdAsync(int freelancerId);
         Task<List<Service>> GetAllServicesByFreelancerIdAsync(int freelancerId);
+        Task<Freelancer> LoginAsync(Freelancer freelancer);
     }
 }

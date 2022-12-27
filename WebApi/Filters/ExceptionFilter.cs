@@ -24,6 +24,11 @@ namespace WebApi.API.Filters
                 statusCode = (int)HttpStatusCode.BadRequest;
             }
 
+            if (exception is UnauthorizedAccessException unauthorized)
+            {
+                statusCode = (int)HttpStatusCode.Unauthorized;
+            }
+
             context.Result = new JsonResult(exception)
             {
                 StatusCode = statusCode

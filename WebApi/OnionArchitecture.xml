@@ -18,6 +18,20 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.Create(Application.Features.FreelancerFeatures.Commands.CreateFreelancerCommand)">
+            <summary>
+            Creates a New Freelancer.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.Login(Application.Features.FreelancerFeatures.Commands.LoginFreelancerCommand)">
+            <summary>
+            Logins Freelancer.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.ProductController.Create(Application.Features.ProductFeatures.Commands.CreateProductCommand)">
             <summary>
             Creates a New Product.

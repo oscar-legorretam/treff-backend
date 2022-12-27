@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace Domain.Entities
 {
@@ -18,9 +19,8 @@ namespace Domain.Entities
 		[MaxLength(200)]
 		public string Mail { get; set; }
 
-		[Required]
 		[MaxLength(10)]
-		public string Phone { get; set; }
+		public string Phone { get; set; } = "";
 
 		[Required]
 		[MaxLength(100)]
@@ -38,7 +38,7 @@ namespace Domain.Entities
 		public string Title { get; set; }
 		public string Country { get; set; }
 		public string Description { get; set; }
-		public DateTime ActiveDate { get; set; }
+		public DateTime ActiveDate { get; set; } = DateTime.Now;
 
 		[MaxLength(5200)]
 		public string WhyMe { get; set; }

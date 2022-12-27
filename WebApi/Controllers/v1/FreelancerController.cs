@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Application.Features.FreelancerFeatures.Commands;
 using Application.Features.FreelancerFeatures.Queries;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,27 @@ namespace WebApi.Controllers.v1
         public async Task<IActionResult> GetByCategoryId(int id)
         {
             return Ok(await Mediator.Send(new GetAllServicesByFreelancerIdQuery { FreelancerId = id}));
+        }
+        /// <summary>
+        /// Creates a New Freelancer.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateFreelancerCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+        /// <summary>
+        /// Logins Freelancer.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login(LoginFreelancerCommand command)
+        {
+            return Ok(await Mediator.Send(command));
         }
     }
 }

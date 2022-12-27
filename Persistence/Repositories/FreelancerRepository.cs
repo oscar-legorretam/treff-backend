@@ -40,5 +40,16 @@ namespace Persistence.Repositories
 
             return services;
         }
+
+        public async Task<Freelancer> LoginAsync(Freelancer freelancer)
+        {
+            var freelancerResponse = await _treffContext.Freelancers
+                .Where(f => f.Mail == freelancer.Mail
+                    && f.Password == freelancer.Password)
+                .FirstOrDefaultAsync();
+
+
+            return freelancerResponse;
+        }
     }
 }

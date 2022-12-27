@@ -18,6 +18,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using AutoMapper;
 
 namespace WebApi
 {
@@ -42,6 +43,7 @@ namespace WebApi
                     options.SerializerSettings.MaxDepth = 24;
                 }
             );
+            services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(Assembly.GetExecutingAssembly());
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<treff_v2Context>(m =>
