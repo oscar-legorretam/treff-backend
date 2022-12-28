@@ -31,7 +31,9 @@ namespace Persistence.Repositories.Base
         }
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _treffContext.Set<T>().FindAsync(id);
+            var entity = await _treffContext.Set<T>().FindAsync(id);
+            _treffContext.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
         public async Task<T> UpdateAsync(T entity)
         {

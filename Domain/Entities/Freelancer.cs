@@ -43,6 +43,8 @@ namespace Domain.Entities
 		[MaxLength(5200)]
 		public string WhyMe { get; set; }
 		public double Score { get; set; }
+		[MaxLength(5200)]
+		public string Skills { get; set; }
 		public IEnumerable<FreelancerComment> FreelancerComments { get; set; }
 	}
 }
