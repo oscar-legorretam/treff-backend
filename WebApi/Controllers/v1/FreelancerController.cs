@@ -51,6 +51,39 @@ namespace WebApi.Controllers.v1
             return Ok(await Mediator.Send(command));
         }
         /// <summary>
+        /// Updates Freelancer Education.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("educations")]
+        public async Task<IActionResult> UpdateEducations(UpdateFreelancerEducationCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+        /// <summary>
+        /// Updates Freelancer Certification.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("certifications")]
+        public async Task<IActionResult> UpdateCertifications(UpdateFreelancerCertificationCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+        /// <summary>
+        /// Updates Freelancer Language.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("languages")]
+        public async Task<IActionResult> UpdateLanguages(UpdateFreelancerLanguageCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+        /// <summary>
         /// Updates the Freelancer Entity based on Id.   
         /// </summary>
         /// <param name="id"></param>

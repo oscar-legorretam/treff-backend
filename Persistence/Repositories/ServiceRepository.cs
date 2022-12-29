@@ -33,6 +33,7 @@ namespace Persistence.Repositories
             }
             return catIds;
         }
+
         public async Task<List<Service>> GetAllServicesByCategoryIdAsync(int categoryId, bool byFreelance = false)
         {
             var categories = await _treffContext.Categories

@@ -25,6 +25,9 @@ namespace Persistence.Context
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<FreelancerComment> FreelancerComments { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Education> Educations { get; set; }
+        public virtual DbSet<Certification> Certifications { get; set; }
+        public virtual DbSet<Language> Languages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

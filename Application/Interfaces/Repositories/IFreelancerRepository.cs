@@ -12,5 +12,8 @@ namespace Application.Interfaces.Repositories
         Task<Freelancer> GetFreelancerByIdAsync(int freelancerId);
         Task<List<Service>> GetAllServicesByFreelancerIdAsync(int freelancerId);
         Task<Freelancer> LoginAsync(Freelancer freelancer);
+        Task<List<Education>> UpdateEducation(int freelancerId, List<Education> data);
+        Task<List<Certification>> UpdateCertification(int freelancerId, List<Certification> data);
+        Task<List<Language>> UpdateLanguage(int freelancerId, List<Language> data);
     }
 }

@@ -21,6 +21,9 @@ namespace Persistence.Repositories
                 .Include(s => s.FreelancerComments)
                 .ThenInclude(c => c.Comment)
                 .ThenInclude(u => u.User)
+                .Include(l => l.Languages)
+                .Include(c => c.Certifications)
+                .Include(e => e.Educations)
                 .Where(s => s.Id == freelancerId)
                 .FirstOrDefaultAsync();
 
@@ -50,6 +53,45 @@ namespace Persistence.Repositories
 
 
             return freelancerResponse;
+        }
+
+        public async Task<List<Education>> UpdateEducation(int freelancerId, List<Education> data)
+        {
+            var current = await _treffContext.Educations.Where(e => e.FreelancerId == freelancerId).ToListAsync();
+
+            _treffContext.Educations.RemoveRange(current);
+
+            await _treffContext.Educations.AddRangeAsync(data);
+
+            await _treffContext.SaveChangesAsync();
+
+            return data;
+        }
+
+        public async Task<List<Certification>> UpdateCertification(int freelancerId, List<Certification> data)
+        {
+            var current = await _treffContext.Certifications.Where(e => e.FreelancerId == freelancerId).ToListAsync();
+
+            _treffContext.Certifications.RemoveRange(current);
+
+            await _treffContext.Certifications.AddRangeAsync(data);
+
+            await _treffContext.SaveChangesAsync();
+
+            return data;
+        }
+
+        public async Task<List<Language>> UpdateLanguage(int freelancerId, List<Language> data)
+        {
+            var current = await _treffContext.Languages.Where(e => e.FreelancerId == freelancerId).ToListAsync();
+
+            _treffContext.Languages.RemoveRange(current);
+
+            await _treffContext.Languages.AddRangeAsync(data);
+
+            await _treffContext.SaveChangesAsync();
+
+            return data;
         }
     }
 }

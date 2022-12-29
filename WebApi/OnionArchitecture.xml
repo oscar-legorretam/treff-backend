@@ -32,6 +32,27 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.UpdateEducations(Application.Features.FreelancerFeatures.Commands.UpdateFreelancerEducationCommand)">
+            <summary>
+            Updates Freelancer Education.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.UpdateCertifications(Application.Features.FreelancerFeatures.Commands.UpdateFreelancerCertificationCommand)">
+            <summary>
+            Updates Freelancer Certification.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.UpdateLanguages(Application.Features.FreelancerFeatures.Commands.UpdateFreelancerLanguageCommand)">
+            <summary>
+            Updates Freelancer Language.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.FreelancerController.Update(System.Int32,Application.Features.FreelancerFeatures.Commands.UpdateFreelancerCommand)">
             <summary>
             Updates the Freelancer Entity based on Id.   
