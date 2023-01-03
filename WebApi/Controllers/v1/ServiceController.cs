@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.CategoryFeatures.Queries;
 using Application.Features.ProductFeatures.Commands;
 using Application.Features.ProductFeatures.Queries;
+using Application.Features.ServiceFeatures.Commands;
 using Application.Features.ServiceFeatures.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -87,6 +89,43 @@ namespace WebApi.Controllers.v1
         [Route("limit")]
         public async Task<IActionResult> GetLimitId(GetAllServicesLimitQuery command)
         {
+            return Ok(await Mediator.Send(command));
+        }
+        [HttpPost]
+        [Route("file")]
+        public async Task<IActionResult> OnPostUploadAsync(IFormFile FormFiles)
+        {
+            //long size = files.FormFiles.Sum(f => f.Length);
+
+            //foreach (var formFile in FormFiles)
+            //{
+            //    if (formFile.Length > 0)
+            //    {
+            //        var filePath = Path.GetTempFileName();
+
+            //        using (var stream = System.IO.File.Create(filePath))
+            //        {
+            //            await formFile.CopyToAsync(stream);
+            //        }
+            //    }
+            //}
+            var path = AppDomain.CurrentDomain.BaseDirectory + @"Images\";
+            var filePath = Path.GetTempFileName();
+
+            using (var stream = System.IO.File.Create(path + FormFiles.FileName))
+            {
+                await FormFiles.CopyToAsync(stream);
+            }
+
+            // Process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+
+            return Ok(new { count = 1 });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPostUploadAsync(CreateServiceCommand command)
+        { 
             return Ok(await Mediator.Send(command));
         }
 
