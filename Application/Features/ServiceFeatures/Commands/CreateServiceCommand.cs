@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using Application.Mapper;
 using Domain.Entities;
 using MediatR;
@@ -34,9 +35,11 @@ namespace Application.Features.ServiceFeatures.Commands
         public class CreateServiceCommandHandler : IRequestHandler<CreateServiceCommand, int>
         {
             private readonly IServiceRepository _context;
-            public CreateServiceCommandHandler(IServiceRepository context)
+            private readonly IAzureBlobService _contextStorage;
+            public CreateServiceCommandHandler(IServiceRepository context, IAzureBlobService contextStorage)
             {
                 _context = context;
+                _contextStorage = contextStorage;
             }
             public async Task<int> Handle(CreateServiceCommand command, CancellationToken cancellationToken)
             {
@@ -49,13 +52,14 @@ namespace Application.Features.ServiceFeatures.Commands
                     var serviceImage = new ServiceImage();
                     Guid guid = Guid.NewGuid();
                     var base64 = formFile.File;
-                    var split = base64.Split(',');
-                    base64 = split.Length > 1 ? split[1] : base64;
-                    var path = AppDomain.CurrentDomain.BaseDirectory + @"Images\";
+                    //var split = base64.Split(',');
+                    //base64 = split.Length > 1 ? split[1] : base64;
+                    //var path = AppDomain.CurrentDomain.BaseDirectory + @"Images\";
                     var name = guid.ToString() + formFile.FileName;
 
-                    File.WriteAllBytes(path + name, Convert.FromBase64String(base64));
-                    serviceImage.Image = name;
+                    //File.WriteAllBytes(path + name, Convert.FromBase64String(base64));
+                    var resp = await _contextStorage.UploadFileAsync(base64, name);
+                    serviceImage.Image = resp;
                     serviceEntitiy.ServiceImages.Add(serviceImage);
 
                 }

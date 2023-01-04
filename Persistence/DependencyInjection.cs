@@ -9,6 +9,8 @@ using Persistence.Repositories;
 using Persistence.Repositories.Base;
 using MediatR;
 using System.Reflection;
+using Infrastructure.Services;
+using Application.Interfaces.Services;
 
 namespace Persistence
 {
@@ -27,6 +29,7 @@ namespace Persistence
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IServiceRepository, ServiceRepository>();
             services.AddTransient<IFreelancerRepository, FreelancerRepository>();
+            services.AddTransient<IAzureBlobService, AzureBlobService>();
         }
     }
 }

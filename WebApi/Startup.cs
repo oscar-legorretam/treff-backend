@@ -19,6 +19,7 @@ using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using AutoMapper;
+using MAD.Infrastructure.Services;
 
 namespace WebApi
 {
@@ -49,6 +50,7 @@ namespace WebApi
             services.AddDbContext<treff_v2Context>(m =>
                     m.UseMySQL(connectionString),
                 ServiceLifetime.Transient);
+            services.Configure<AzureStorageConfig>(opts => Configuration.GetSection("AzureStorageConfig").Bind(opts));
             #region Swagger
             //services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
