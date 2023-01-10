@@ -61,6 +61,13 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.UpdatePhoto(Application.Features.FreelancerFeatures.Commands.UpdateFreelancerPhotoCommand)">
+            <summary>
+            Updates Freelancer Language.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.ProductController.Create(Application.Features.ProductFeatures.Commands.CreateProductCommand)">
             <summary>
             Creates a New Product.

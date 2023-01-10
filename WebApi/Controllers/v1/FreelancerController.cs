@@ -98,5 +98,17 @@ namespace WebApi.Controllers.v1
             }
             return Ok(await Mediator.Send(command));
         }
+        
+        /// <summary>
+        /// Updates Freelancer Language.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("updatePhoto")]
+        public async Task<IActionResult> UpdatePhoto(UpdateFreelancerPhotoCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
     }
 }
