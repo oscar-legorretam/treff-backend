@@ -110,5 +110,17 @@ namespace WebApi.Controllers.v1
         {
             return Ok(await Mediator.Send(command));
         }
+        
+        /// <summary>
+        /// Updates Freelancer Language.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("updatePassword")]
+        public async Task<IActionResult> UpdatePassword(UpdateFreelancerPasswordCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
     }
 }

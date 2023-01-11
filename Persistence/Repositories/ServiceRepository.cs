@@ -52,7 +52,7 @@ namespace Persistence.Repositories
                 .Include(s => s.Packages)
                 .Include(s => s.Category)
                 .OrderBy(s => s.Id)
-                .Where(s => catIds.Contains(s.CategoryId))
+                .Where(s => catIds.Contains(s.CategoryId) && s.Freelancer.Active == true)
                 .ToListAsync();
 
             services.ForEach(x => x.Packages = x.Packages.OrderBy(y => y.Cost).ToList());
@@ -94,7 +94,7 @@ namespace Persistence.Repositories
                 .Include(s => s.Category)
                 .OrderBy(s => s.Id)
                 .Where(s => catIds.Contains(s.CategoryId)
-                    && s.Highlight == true)
+                    && s.Highlight == true && s.Freelancer.Active == true)
                 .ToListAsync();
 
             services.ForEach(x => x.Packages = x.Packages.OrderBy(y => y.Cost).ToList());
@@ -124,6 +124,7 @@ namespace Persistence.Repositories
                 .Include(s => s.Freelancer)
                 .Include(s => s.Packages)
                 .Include(s => s.Category)
+                .Where(s =>  s.Freelancer.Active == true)
                 .OrderBy(s => s.Id)
                 .Take(limit)
                 .ToListAsync();
@@ -147,6 +148,7 @@ namespace Persistence.Repositories
                 .Include(s => s.Freelancer)
                 .Include(s => s.Packages)
                 .Include(s => s.Category)
+                .Where(s => s.Freelancer.Active == true)
                 .OrderBy(s => s.Id)
                 .Take(limit)
                 .ToListAsync();
