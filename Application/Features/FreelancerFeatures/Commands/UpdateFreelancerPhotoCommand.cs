@@ -43,7 +43,6 @@ namespace Application.Features.FreelancerFeatures.Commands
 
                 var resp = await _contextStorage.UploadFileAsync(base64, name);
 
-                //freelancerEntitiy = FreelancerMapper.Mapper.Map<Freelancer>(request);
                 freelancerEntitiy.Photo = resp;
 
                 await _context.UpdateAsync(freelancerEntitiy);
