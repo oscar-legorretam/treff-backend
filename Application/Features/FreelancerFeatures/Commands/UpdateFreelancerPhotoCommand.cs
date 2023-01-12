@@ -30,7 +30,7 @@ namespace Application.Features.FreelancerFeatures.Commands
             }
             public async Task<Freelancer> Handle(UpdateFreelancerPhotoCommand request, CancellationToken cancellationToken)
             {
-                var freelancerEntitiy = await _context.GetFreelancerByIdAsync(request.Id);
+                var freelancerEntitiy = await _context.GetByIdAsync(request.Id);
 
                 if (freelancerEntitiy == null)
                 {
@@ -48,7 +48,7 @@ namespace Application.Features.FreelancerFeatures.Commands
 
                 await _context.UpdateAsync(freelancerEntitiy);
 
-                freelancerEntitiy.Password = null;
+                freelancerEntitiy = await _context.GetFreelancerByIdAsync(request.Id);
                 return freelancerEntitiy;
             }
         }
