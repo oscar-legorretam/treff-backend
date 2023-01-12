@@ -11,6 +11,7 @@ using MediatR;
 using System.Reflection;
 using Infrastructure.Services;
 using Application.Interfaces.Services;
+using Persistence.Services;
 
 namespace Persistence
 {
@@ -29,7 +30,9 @@ namespace Persistence
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IServiceRepository, ServiceRepository>();
             services.AddTransient<IFreelancerRepository, FreelancerRepository>();
+            services.AddTransient<IFreelancerVerificationRepository, FreelancerVerificationRepository>();
             services.AddTransient<IAzureBlobService, AzureBlobService>();
+            services.AddTransient<ITwilioService, TwilioService>();
         }
     }
 }

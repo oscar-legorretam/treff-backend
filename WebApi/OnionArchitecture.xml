@@ -75,6 +75,20 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.ValidateSms(Application.Features.FreelancerFeatures.Commands.ValidateSmsFreelancerCommand)">
+            <summary>
+            Updates Freelancer Language.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.ValidateCode(Application.Features.FreelancerFeatures.Commands.ValidateCodeFreelancerCommand)">
+            <summary>
+            Updates Freelancer Language.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.ProductController.Create(Application.Features.ProductFeatures.Commands.CreateProductCommand)">
             <summary>
             Creates a New Product.

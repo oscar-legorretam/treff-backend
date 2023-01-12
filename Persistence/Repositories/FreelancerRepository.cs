@@ -24,9 +24,10 @@ namespace Persistence.Repositories
                 .Include(l => l.Languages)
                 .Include(c => c.Certifications)
                 .Include(e => e.Educations)
+                .Include(v => v.Verifications)
                 .Where(s => s.Id == freelancerId)
                 .FirstOrDefaultAsync();
-
+            freelancer.Password = null;
 
             return freelancer;
         }

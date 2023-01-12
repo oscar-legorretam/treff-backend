@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Context;
 
 namespace Persistence.Migrations.treff_v2
 {
     [DbContext(typeof(treff_v2Context))]
-    partial class treff_v2ContextModelSnapshot : ModelSnapshot
+    [Migration("20230111192532_AddFreelancerPhoneLong")]
+    partial class AddFreelancerPhoneLong
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,40 +238,6 @@ namespace Persistence.Migrations.treff_v2
                     b.HasIndex("FreelancerId");
 
                     b.ToTable("FreelancerComments");
-                });
-
-            modelBuilder.Entity("Domain.Entities.FreelancerVerification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<int>("FreelancerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Verificated")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("VerificationTime")
-                        .HasColumnType("datetime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FreelancerId");
-
-                    b.ToTable("FreelancerVerifications");
                 });
 
             modelBuilder.Entity("Domain.Entities.Language", b =>
@@ -509,15 +477,6 @@ namespace Persistence.Migrations.treff_v2
 
                     b.HasOne("Domain.Entities.Freelancer", "Freelancer")
                         .WithMany("FreelancerComments")
-                        .HasForeignKey("FreelancerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.FreelancerVerification", b =>
-                {
-                    b.HasOne("Domain.Entities.Freelancer", "Freelancer")
-                        .WithMany("Verifications")
                         .HasForeignKey("FreelancerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

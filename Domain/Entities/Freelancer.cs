@@ -19,7 +19,7 @@ namespace Domain.Entities
 		[MaxLength(200)]
 		public string Mail { get; set; }
 
-		[MaxLength(10)]
+		[MaxLength(15)]
 		public string Phone { get; set; } = "";
 
 		[Required]
@@ -50,5 +50,6 @@ namespace Domain.Entities
 		public IEnumerable<Education> Educations { get; set; }
 		public IEnumerable<Certification> Certifications { get; set; }
 		public IEnumerable<Language> Languages { get; set; }
+		public IEnumerable<FreelancerVerification> Verifications { get; set; }
 	}
 }

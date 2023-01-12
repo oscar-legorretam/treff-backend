@@ -30,7 +30,7 @@ namespace Application.Features.FreelancerFeatures.Commands
             }
             public async Task<Freelancer> Handle(UpdateFreelancerPhotoCommand request, CancellationToken cancellationToken)
             {
-                var freelancerEntitiy = await _context.GetByIdAsync(request.Id);
+                var freelancerEntitiy = await _context.GetFreelancerByIdAsync(request.Id);
 
                 if (freelancerEntitiy == null)
                 {

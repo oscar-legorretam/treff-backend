@@ -51,7 +51,9 @@ namespace Application.Features.FreelancerFeatures.Commands
 
                 await _context.UpdateAsync(freelancerEntitiy);
 
-                freelancerEntitiy.Password = null;
+                freelancerEntitiy = await _context.GetFreelancerByIdAsync(request.Id);
+
+                
                 return freelancerEntitiy;
             }
         }

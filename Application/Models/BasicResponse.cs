@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Application.Models
 {
-    public class PasswordResponse
+    public class BasicResponse
     {
         public bool Success { get; set; }
         public string Message { get; set; }

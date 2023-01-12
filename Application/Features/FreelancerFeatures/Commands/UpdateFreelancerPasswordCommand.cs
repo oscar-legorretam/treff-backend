@@ -15,21 +15,21 @@ using System.Web.Http;
 
 namespace Application.Features.FreelancerFeatures.Commands
 {
-    public class UpdateFreelancerPasswordCommand : IRequest<PasswordResponse>
+    public class UpdateFreelancerPasswordCommand : IRequest<BasicResponse>
     {
         public int Id { get; set; }
         public string NewPassword { get; set; }
         public string Password { get; set; }
-        public class UpdateFreelancerPasswordCommandHandler : IRequestHandler<UpdateFreelancerPasswordCommand, PasswordResponse>
+        public class UpdateFreelancerPasswordCommandHandler : IRequestHandler<UpdateFreelancerPasswordCommand, BasicResponse>
         {
             private readonly IFreelancerRepository _context;
             public UpdateFreelancerPasswordCommandHandler(IFreelancerRepository context)
             {
                 _context = context;
             }
-            public async Task<PasswordResponse> Handle(UpdateFreelancerPasswordCommand request, CancellationToken cancellationToken)
+            public async Task<BasicResponse> Handle(UpdateFreelancerPasswordCommand request, CancellationToken cancellationToken)
             {
-                var response = new PasswordResponse();
+                var response = new BasicResponse();
 
                 var freelancerEntitiy = await _context.GetByIdAsync(request.Id);
                 var password = request.Password.EncodeToBase64();

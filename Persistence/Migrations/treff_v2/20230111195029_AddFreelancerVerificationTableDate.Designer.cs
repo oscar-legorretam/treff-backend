@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Context;
 
 namespace Persistence.Migrations.treff_v2
 {
     [DbContext(typeof(treff_v2Context))]
-    partial class treff_v2ContextModelSnapshot : ModelSnapshot
+    [Migration("20230111195029_AddFreelancerVerificationTableDate")]
+    partial class AddFreelancerVerificationTableDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,9 +263,6 @@ namespace Persistence.Migrations.treff_v2
 
                     b.Property<bool>("Verificated")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("VerificationTime")
-                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 

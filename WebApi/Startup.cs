@@ -20,6 +20,7 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 using AutoMapper;
 using MAD.Infrastructure.Services;
+using Persistence.Services;
 
 namespace WebApi
 {
@@ -51,6 +52,7 @@ namespace WebApi
                     m.UseMySQL(connectionString),
                 ServiceLifetime.Transient);
             services.Configure<AzureStorageConfig>(opts => Configuration.GetSection("AzureStorageConfig").Bind(opts));
+            services.Configure<TwilioConfig>(opts => Configuration.GetSection("TwilioConfig").Bind(opts));
             #region Swagger
             //services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();

@@ -122,5 +122,29 @@ namespace WebApi.Controllers.v1
         {
             return Ok(await Mediator.Send(command));
         }
+
+        /// <summary>
+        /// Updates Freelancer Language.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("validateSms")]
+        public async Task<IActionResult> ValidateSms(ValidateSmsFreelancerCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+
+        /// <summary>
+        /// Updates Freelancer Language.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("validateCode")]
+        public async Task<IActionResult> ValidateCode(ValidateCodeFreelancerCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
     }
 }
