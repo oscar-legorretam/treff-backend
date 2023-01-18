@@ -18,6 +18,7 @@ namespace Application.Features.FreelancerFeatures.Commands
         public string Name { get; set; }
         public string Mail { get; set; }
         public string Phone { get; set; }
+        public string PhoneCode { get; set; }
         public bool Active { get; set; }
         public bool Verified { get; set; }
         public bool Invoice { get; set; }

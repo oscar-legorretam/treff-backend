@@ -29,6 +29,7 @@ namespace Persistence.Context
         public virtual DbSet<Certification> Certifications { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<FreelancerVerification> FreelancerVerifications { get; set; }
+        public virtual DbSet<Faq> Faqs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

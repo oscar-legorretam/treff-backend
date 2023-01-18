@@ -26,11 +26,13 @@ namespace Application.Features.ServiceFeatures.Commands
 
         public string MainImage { get; set; }
         public ICollection<Package> Packages { get; set; }
+        public ICollection<Faq> Faqs { get; set; }
 
         public int FreelancerId { get; set; }
         public bool Highlight { get; set; } = false;
 
         public bool ExpressDelivery { get; set; } = false;
+        public string Requirements { get; set; }
         public List<FileModel> Files { get; set; }
         public class CreateServiceCommandHandler : IRequestHandler<CreateServiceCommand, int>
         {
@@ -66,7 +68,7 @@ namespace Application.Features.ServiceFeatures.Commands
                 serviceEntitiy.MainImage = "";
 
                 var response = await _context.AddAsync(serviceEntitiy);
-                return 1;
+                return response.Id;
             }
         }
     }

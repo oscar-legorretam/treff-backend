@@ -44,6 +44,10 @@ namespace Domain.Entities
 
 		[Required]
 		public bool ExpressDelivery { get; set; } = false;
+
+		[Required]
+		public string Requirements { get; set; }
 		public ICollection<ServiceImage> ServiceImages { get; set; }
+		public ICollection<Faq> Faqs { get; set; }
 	}
 }

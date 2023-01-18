@@ -15,16 +15,16 @@ using static Twilio.Rest.Api.V2010.Account.Call.FeedbackSummaryResource;
 
 namespace Application.Features.FreelancerFeatures.Commands
 {
-    public class ValidateSmsFreelancerCommand : IRequest<BasicResponse>
+    public class ValidateEmailFreelancerCommand : IRequest<BasicResponse>
     {
         public int Id { get; set; }
-        public string Phone { get; set; }
-        public class ValidateSmsFreelancerCommandHandler : IRequestHandler<ValidateSmsFreelancerCommand, BasicResponse>
+        public string Mail { get; set; }
+        public class ValidateEmailFreelancerCommandHandler : IRequestHandler<ValidateEmailFreelancerCommand, BasicResponse>
         {
             private readonly IFreelancerRepository _context;
             private readonly IFreelancerVerificationRepository _contextVerification;
             private readonly ITwilioService _contextTwilio;
-            public ValidateSmsFreelancerCommandHandler(IFreelancerRepository context,
+            public ValidateEmailFreelancerCommandHandler(IFreelancerRepository context,
                 ITwilioService contextTwilio,
                 IFreelancerVerificationRepository contextVerification)
             {
@@ -32,7 +32,7 @@ namespace Application.Features.FreelancerFeatures.Commands
                 _contextTwilio = contextTwilio;
                 _contextVerification = contextVerification;
             }
-            public async Task<BasicResponse> Handle(ValidateSmsFreelancerCommand request, CancellationToken cancellationToken)
+            public async Task<BasicResponse> Handle(ValidateEmailFreelancerCommand request, CancellationToken cancellationToken)
             {
                 var freelancerEntitiy = await _context.GetByIdAsync(request.Id);
 
@@ -45,20 +45,24 @@ namespace Application.Features.FreelancerFeatures.Commands
                 {
                     Code = verificationCode,
                     FreelancerId = freelancerEntitiy.Id,
-                    Type = "Sms",
-                    Value = request.Phone,
+                    Type = "Email",
+                    Value = request.Mail,
                 };
 
                 await _contextVerification.AddAsync(verificationEntity);
 
-                var responseSms = _contextTwilio.SendMessage(request.Phone, 
-                    $"Utiliza el codigo {verificationCode} para verificar tu cuenta en TREFF");
+                var email = new EmailManger();
 
-                if (responseSms.Status == StatusEnum.Failed)
-                {
-                    response.Success = false;
-                    response.Message = responseSms.ErrorMessage;
-                }
+                email.SendEmail($"Utiliza el codigo {verificationCode} para verificar tu cuenta en TREFF.", request.Mail);
+
+                //var responseSms = _contextTwilio.SendMessage(freelancerEntitiy.Phone, 
+                //    $"Utiliza el codigo {verificationCode} para verificar tu cuenta en TREFF");
+
+                //if (responseSms.Status == StatusEnum.Failed)
+                //{
+                //    response.Success = false;
+                //    response.Message = responseSms.ErrorMessage;
+                //}
 
                 return response;
             }

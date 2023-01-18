@@ -124,13 +124,25 @@ namespace WebApi.Controllers.v1
         }
 
         /// <summary>
-        /// Updates Freelancer Language.
+        /// Sens SMS validation.
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("validateSms")]
         public async Task<IActionResult> ValidateSms(ValidateSmsFreelancerCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+
+        /// <summary>
+        /// Sends email validation.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("validateEmail")]
+        public async Task<IActionResult> ValidateEmail(ValidateEmailFreelancerCommand command)
         {
             return Ok(await Mediator.Send(command));
         }

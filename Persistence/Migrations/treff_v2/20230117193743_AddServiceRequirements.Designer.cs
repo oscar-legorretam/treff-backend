@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Context;
 
 namespace Persistence.Migrations.treff_v2
 {
     [DbContext(typeof(treff_v2Context))]
-    partial class treff_v2ContextModelSnapshot : ModelSnapshot
+    [Migration("20230117193743_AddServiceRequirements")]
+    partial class AddServiceRequirements
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,28 +151,6 @@ namespace Persistence.Migrations.treff_v2
                     b.ToTable("Educations");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Faq", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Answer")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Question")
-                        .HasColumnType("text");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("Faqs");
-                });
-
             modelBuilder.Entity("Domain.Entities.Freelancer", b =>
                 {
                     b.Property<int>("Id")
@@ -213,9 +193,6 @@ namespace Persistence.Migrations.treff_v2
                     b.Property<string>("Phone")
                         .HasColumnType("varchar(15)")
                         .HasMaxLength(15);
-
-                    b.Property<string>("PhoneCode")
-                        .HasColumnType("text");
 
                     b.Property<string>("Photo")
                         .HasColumnType("text");
@@ -524,15 +501,6 @@ namespace Persistence.Migrations.treff_v2
                     b.HasOne("Domain.Entities.Freelancer", "Freelancer")
                         .WithMany("Educations")
                         .HasForeignKey("FreelancerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.Faq", b =>
-                {
-                    b.HasOne("Domain.Entities.Service", "Service")
-                        .WithMany("Faqs")
-                        .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

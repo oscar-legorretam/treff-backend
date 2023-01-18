@@ -18,7 +18,7 @@ namespace Application.Features.FreelancerFeatures.Commands
     public class ValidateCodeFreelancerCommand : IRequest<BasicResponse>
     {
         public int Id { get; set; }
-        public string PhoneNumber { get; set; }
+        public string Value { get; set; }
         public string Code { get; set; }
         public class ValidateCodeFreelancerCommandHandler : IRequestHandler<ValidateCodeFreelancerCommand, BasicResponse>
         {
@@ -37,7 +37,7 @@ namespace Application.Features.FreelancerFeatures.Commands
             {
                 var response = new BasicResponse();
 
-                var validation = await _contextVerification.GetValidationByFreelancerId(request.Id, request.PhoneNumber, request.Code);
+                var validation = await _contextVerification.GetValidationByFreelancerId(request.Id, request.Value, request.Code);
 
                 if (validation != null)
                 {
@@ -45,7 +45,7 @@ namespace Application.Features.FreelancerFeatures.Commands
                     await _contextVerification.UpdateAsync(validation);
 
                     response.Success = true;
-                    response.Message = "Teléfono validado correctamente";
+                    response.Message = "Validado correctamente";
                     return response;
                 }
                 else{

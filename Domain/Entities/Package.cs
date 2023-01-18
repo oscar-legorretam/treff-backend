@@ -19,7 +19,7 @@ namespace Domain.Entities
 		public string Description { get; set; }
 		[Required]
 		[MaxLength(200)]
-		public string Name { get; set; }
+		public string Name { get; set; } = "";
 		[Required]
 		public bool Premium { get; set; } = false;
 		[Required]

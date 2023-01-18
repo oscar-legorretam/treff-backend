@@ -21,6 +21,7 @@ namespace Domain.Entities
 
 		[MaxLength(15)]
 		public string Phone { get; set; } = "";
+		public string PhoneCode { get; set; } = "";
 
 		[Required]
 		[MaxLength(100)]

@@ -77,7 +77,14 @@
         </member>
         <member name="M:WebApi.Controllers.v1.FreelancerController.ValidateSms(Application.Features.FreelancerFeatures.Commands.ValidateSmsFreelancerCommand)">
             <summary>
-            Updates Freelancer Language.
+            Sens SMS validation.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.ValidateEmail(Application.Features.FreelancerFeatures.Commands.ValidateEmailFreelancerCommand)">
+            <summary>
+            Sends email validation.
             </summary>
             <param name="command"></param>
             <returns></returns>
