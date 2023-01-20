@@ -18,6 +18,8 @@ namespace Application.Features.FreelancerFeatures.Commands
         public int Id { get; set; }
         public string Photo { get; set; }
         public string FileName { get; set; }
+        public bool Profile { get; set; } 
+        public bool Cover { get; set; }
 
         public class UpdateFreelancerPhotoCommandHandler : IRequestHandler<UpdateFreelancerPhotoCommand, Freelancer>
         {
@@ -43,7 +45,14 @@ namespace Application.Features.FreelancerFeatures.Commands
 
                 var resp = await _contextStorage.UploadFileAsync(base64, name);
 
-                freelancerEntitiy.Photo = resp;
+                if (request.Profile)
+                {
+                    freelancerEntitiy.Photo = resp;
+                }
+                if (request.Cover)
+                {
+                    freelancerEntitiy.Cover = resp;
+                }
 
                 await _context.UpdateAsync(freelancerEntitiy);
 
