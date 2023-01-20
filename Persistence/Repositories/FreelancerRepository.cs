@@ -37,6 +37,8 @@ namespace Persistence.Repositories
                 .Include(s => s.Freelancer)
                 .Include(s => s.Category)
                 .Include(s => s.Packages)
+                .Include(s => s.ServiceImages)
+                .Include(s => s.Faqs)
                 .Where(s => s.FreelancerId == freelancerId)
                 .ToListAsync();
 

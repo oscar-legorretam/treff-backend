@@ -164,7 +164,7 @@ namespace Infrastructure.Services
             return strFileName;
         }
 
-        private bool IsBase64String(string base64)
+        public bool IsBase64String(string base64)
         {
             if (string.IsNullOrEmpty(base64))
             {

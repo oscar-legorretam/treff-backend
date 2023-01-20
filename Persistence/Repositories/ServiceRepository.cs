@@ -183,5 +183,35 @@ namespace Persistence.Repositories
 
             return service;
         }
+
+        public async Task<int> DeleteImagesServiceByIdAsync(int id)
+        {
+            var serviceImages = await _treffContext.ServiceImages
+                .Where(s => s.ServiceId == id)
+                .ToListAsync();
+
+            var total = serviceImages.Count;
+
+            _treffContext.RemoveRange(serviceImages);
+
+            _treffContext.SaveChanges();
+
+            return total;
+        }
+
+        public async Task<int> DeleteFaqsServiceByIdAsync(int id)
+        {
+            var serviceFaqs = await _treffContext.Faqs
+                .Where(s => s.ServiceId == id)
+                .ToListAsync();
+
+            var total = serviceFaqs.Count;
+
+            _treffContext.RemoveRange(serviceFaqs);
+
+            _treffContext.SaveChanges();
+
+            return total;
+        }
     }
 }

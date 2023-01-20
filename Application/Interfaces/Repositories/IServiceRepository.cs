@@ -14,5 +14,7 @@ namespace Application.Interfaces.Repositories
         Task<List<Service>> GetAllServicesPremiumAsync(int limit, bool byFreelance = false);
         Task<List<Service>> GetAllServicesAsync(int limit, bool byFreelance = false);
         Task<Service> GetServiceByIdAsync(int id);
+        Task<int> DeleteImagesServiceByIdAsync(int id);
+        Task<int> DeleteFaqsServiceByIdAsync(int id);
     }
 }

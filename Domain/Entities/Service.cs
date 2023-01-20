@@ -16,6 +16,9 @@ namespace Domain.Entities
 		public string Name { get; set; }
 
 		[Required]
+		public int CategoryMainId { get; set; }
+
+		[Required]
 		public int CategoryId { get; set; }
 
 		[ForeignKey("CategoryId")]
@@ -47,6 +50,7 @@ namespace Domain.Entities
 
 		[Required]
 		public string Requirements { get; set; }
+		public bool IsMexico { get; set; } = false;
 		public ICollection<ServiceImage> ServiceImages { get; set; }
 		public ICollection<Faq> Faqs { get; set; }
 	}

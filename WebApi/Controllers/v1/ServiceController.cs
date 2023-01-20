@@ -122,12 +122,30 @@ namespace WebApi.Controllers.v1
 
             return Ok(new { count = 1 });
         }
-
+        /// <summary>
+        /// Creates new service
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> OnPostUploadAsync(CreateServiceCommand command)
         { 
             return Ok(await Mediator.Send(command));
         }
-
+        /// <summary>
+        /// Edits service
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<IActionResult> OnPutUploadAsync(int id, EditServiceCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+            return Ok(await Mediator.Send(command));
+        }
     }
 }

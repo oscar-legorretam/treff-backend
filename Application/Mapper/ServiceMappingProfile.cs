@@ -13,6 +13,7 @@ namespace Application.Mapper
         public ServiceMappingProfile()
         {
             CreateMap<Service, CreateServiceCommand>().ReverseMap();
+            CreateMap<Service, EditServiceCommand>().ReverseMap();
         }
     }
 }
