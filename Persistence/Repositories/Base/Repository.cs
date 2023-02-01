@@ -32,7 +32,10 @@ namespace Persistence.Repositories.Base
         public async Task<T> GetByIdAsync(int id)
         {
             var entity = await _treffContext.Set<T>().FindAsync(id);
-            _treffContext.Entry(entity).State = EntityState.Detached;
+            if (entity != null)
+            {
+                _treffContext.Entry(entity).State = EntityState.Detached;
+            }
             return entity;
         }
         public async Task<T> UpdateAsync(T entity)

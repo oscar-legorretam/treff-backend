@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Net;
+using System.Web.Http;
 
 namespace WebApi.API.Filters
 {
@@ -27,6 +28,11 @@ namespace WebApi.API.Filters
             if (exception is UnauthorizedAccessException unauthorized)
             {
                 statusCode = (int)HttpStatusCode.Unauthorized;
+            }
+
+            if (exception is HttpResponseException httpException)
+            {
+                statusCode = (int)httpException.Response.StatusCode;
             }
 
             context.Result = new JsonResult(exception)
