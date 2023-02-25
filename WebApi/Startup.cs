@@ -21,6 +21,7 @@ using System.Text.Json.Serialization;
 using AutoMapper;
 using MAD.Infrastructure.Services;
 using Persistence.Services;
+using WebApi.Hubs;
 
 namespace WebApi
 {
@@ -37,6 +38,16 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("ClientPermission", policy =>
+            //    {
+            //        policy.AllowAnyHeader()
+            //            .AllowAnyMethod()
+            //            .WithOrigins("http://localhost:3000")
+            //            .AllowCredentials();
+            //    });
+            //});
 
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
@@ -56,7 +67,7 @@ namespace WebApi
             #region Swagger
             //services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
-
+            services.AddSignalR();
             #endregion
             #region Api Versioning
             // Add API Versioning to the Project
@@ -84,6 +95,7 @@ namespace WebApi
                 options.WithOrigins("http://localhost:3000", "https://maxvazquezg.github.io/", "https://maxvazquezg.github.io/treff-site");
                 options.AllowAnyMethod();
                 options.AllowAnyHeader();
+                options.AllowCredentials();
             });
 
             if (env.IsDevelopment())
@@ -102,7 +114,7 @@ namespace WebApi
 
 
             app.UseHttpsRedirection();
-
+            //app.UseCors("ClientPermission");
             app.UseRouting();
 
             app.UseAuthorization();
@@ -120,6 +132,7 @@ namespace WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/hubs/chat");
             });
         }
     }

@@ -239,5 +239,13 @@
             </summary>
             <param name="context"></param>
         </member>
+        <member name="T:WebApi.Hubs.ChatHub">
+            <summary>
+            Chat hub
+            </summary>
+        </member>
+        <member name="M:WebApi.Hubs.ChatHub.OnConnectedAsync">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>

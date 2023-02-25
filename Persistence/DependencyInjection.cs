@@ -32,6 +32,7 @@ namespace Persistence
             services.AddTransient<IFreelancerRepository, FreelancerRepository>();
             services.AddTransient<IFreelancerVerificationRepository, FreelancerVerificationRepository>();
             services.AddTransient<IProjectRepository, ProjectRepository>();
+            services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddTransient<IAzureBlobService, AzureBlobService>();
             services.AddTransient<ITwilioService, TwilioService>();
         }

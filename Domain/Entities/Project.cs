@@ -33,10 +33,11 @@ namespace Domain.Entities
         public Package Package { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime CalculatedFinishDate { get; set; }
-        public DateTime FinishDate { get; set; }
+        public DateTime? FinishDate { get; set; }
         public double Price { get; set; }
         public bool Finished { get; set; }
         public int Status { get; set; }
         public string Receipt { get; set; }
+        public string ChatId { get; set; }
     }
 }

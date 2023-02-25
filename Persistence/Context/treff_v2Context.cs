@@ -31,6 +31,8 @@ namespace Persistence.Context
         public virtual DbSet<FreelancerVerification> FreelancerVerifications { get; set; }
         public virtual DbSet<Faq> Faqs { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Chat> Chats { get; set; }
+        public virtual DbSet<ChatMessage> ChatMessages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

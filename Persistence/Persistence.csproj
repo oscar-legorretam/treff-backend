@@ -3,6 +3,19 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\treff_v2\20230202165915_AddChatMessages.cs" />
+    <Compile Remove="Migrations\treff_v2\20230202165915_AddChatMessages.Designer.cs" />
+    <Compile Remove="Migrations\treff_v2\20230202201705_AddChat.cs" />
+    <Compile Remove="Migrations\treff_v2\20230202201705_AddChat.Designer.cs" />
+    <Compile Remove="Migrations\treff_v2\20230202202051_AddChatTable.cs" />
+    <Compile Remove="Migrations\treff_v2\20230202202051_AddChatTable.Designer.cs" />
+    <Compile Remove="Migrations\treff_v2\20230202202732_AddChatTable1.cs" />
+    <Compile Remove="Migrations\treff_v2\20230202202732_AddChatTable1.Designer.cs" />
+    <Compile Remove="Migrations\treff_v2\20230202203754_AddChatTableUsers.cs" />
+    <Compile Remove="Migrations\treff_v2\20230202203754_AddChatTableUsers.Designer.cs" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.14.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
