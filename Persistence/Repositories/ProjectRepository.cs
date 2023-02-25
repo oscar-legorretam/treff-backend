@@ -14,5 +14,12 @@ namespace Persistence.Repositories
     {
         public ProjectRepository(treff_v2Context treffContext) : base(treffContext) { }
 
+        public async Task<IEnumerable<Project>> GetActiveByFreelancerIdAsync(int freelancerId)
+        {
+            return await _treffContext.Projects
+                .Where(p => p.FreelancerId == freelancerId)
+                .ToListAsync();
+        }
+
     }
 }

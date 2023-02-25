@@ -40,7 +40,7 @@ namespace Application.Features.ProjectFeatures.Commands
                 projectEntitiy.CalculatedFinishDate = DateTime.Now.AddDays(package.Time);
                 projectEntitiy.Price = package.Cost + serviceAmount;
                 projectEntitiy.Finished = false;
-                projectEntitiy.Status = 1;
+                projectEntitiy.Status = Status.Active;
                 projectEntitiy.ChatId = Guid.NewGuid().ToString();
 
                 var response = await _context.AddAsync(projectEntitiy);

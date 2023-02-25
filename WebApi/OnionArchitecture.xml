@@ -146,7 +146,14 @@
         </member>
         <member name="M:WebApi.Controllers.v1.ProjectController.GetById(System.Int32)">
             <summary>
-            Gets Product Entity by Id.
+            Gets Project Entity by Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.ProjectController.GetActiveProjectsByFreelancerId(System.Int32)">
+            <summary>
+            Gets Project Entity by Freelancer Id.
             </summary>
             <param name="id"></param>
             <returns></returns>

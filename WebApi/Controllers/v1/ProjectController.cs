@@ -35,7 +35,7 @@ namespace WebApi.Controllers.v1
             return Ok(await Mediator.Send(new GetAllCategoriesQuery()));
         }
         /// <summary>
-        /// Gets Product Entity by Id.
+        /// Gets Project Entity by Id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -43,6 +43,17 @@ namespace WebApi.Controllers.v1
         public async Task<IActionResult> GetById(int id)
         {
             return Ok(await Mediator.Send(new GetProjectrByIdQuery { Id = id }));
+        }
+
+        /// <summary>
+        /// Gets Project Entity by Freelancer Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("freelancer/{id}")]
+        public async Task<IActionResult> GetActiveProjectsByFreelancerId(int id)
+        {
+            return Ok(await Mediator.Send(new GetActiveProjectByFreelancerIdQuery { Id = id }));
         }
         /// <summary>
         /// Deletes Product Entity based on Id.

@@ -36,8 +36,16 @@ namespace Domain.Entities
         public DateTime? FinishDate { get; set; }
         public double Price { get; set; }
         public bool Finished { get; set; }
-        public int Status { get; set; }
+        public Status Status { get; set; }
         public string Receipt { get; set; }
         public string ChatId { get; set; }
+    }
+
+    public enum Status
+    {
+        Active = 1,
+        CancelledByUser = 2,
+        CancelledByFreelancer = 3,
+        Finished = 4
     }
 }
