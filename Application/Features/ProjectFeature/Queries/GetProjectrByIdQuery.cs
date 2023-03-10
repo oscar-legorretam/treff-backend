@@ -25,7 +25,7 @@ namespace Application.Features.ProjectFeatures.Queries
             }
             public async Task<Project> Handle(GetProjectrByIdQuery query, CancellationToken cancellationToken)
             {
-                var project = await _context.GetByIdAsync(query.Id);
+                var project = await _context.GetActiveByIdAsync(query.Id);
                 if (project == null)
                 {
                     throw new HttpResponseException(HttpStatusCode.NotFound);
