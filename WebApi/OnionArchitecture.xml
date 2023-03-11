@@ -151,11 +151,11 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Controllers.v1.ProjectController.GetActiveProjectsByFreelancerId(System.Int32)">
+        <member name="M:WebApi.Controllers.v1.ProjectController.GetActiveProjectsByFreelancerId(Application.Features.ProjectFeatures.Queries.GetActiveProjectByFreelancerIdQuery)">
             <summary>
             Gets Project Entity by Freelancer Id.
             </summary>
-            <param name="id"></param>
+            <param name="command"></param>
             <returns></returns>
         </member>
         <member name="M:WebApi.Controllers.v1.ProjectController.Delete(System.Int32)">

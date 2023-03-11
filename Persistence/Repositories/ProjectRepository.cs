@@ -14,7 +14,7 @@ namespace Persistence.Repositories
     {
         public ProjectRepository(treff_v2Context treffContext) : base(treffContext) { }
 
-        public async Task<IEnumerable<Project>> GetActiveByFreelancerIdAsync(int freelancerId)
+        public async Task<IEnumerable<Project>> GetActiveByFreelancerIdAsync(int freelancerId, int status)
         {
             return await _treffContext.Projects
                 .Include(p => p.Freelancer)
@@ -22,7 +22,8 @@ namespace Persistence.Repositories
                 .Include(p => p.Package)
                 .Include(p => p.Service)
                 .ThenInclude(s => s.Category)
-                .Where(p => p.FreelancerId == freelancerId)
+                .Where(p => p.FreelancerId == freelancerId && 
+                    p.Status == (Status)status)
                 .ToListAsync();
         }
 

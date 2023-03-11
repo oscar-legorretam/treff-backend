@@ -16,6 +16,7 @@ namespace Application.Features.ProjectFeatures.Queries
     public class GetActiveProjectByFreelancerIdQuery : IRequest<IEnumerable<Project>>
     {
         public int Id { get; set; }
+        public int Status { get; set; }
         public class GetActiveProjectByFreelancerIdQueryHandler : IRequestHandler<GetActiveProjectByFreelancerIdQuery, IEnumerable<Project>>
         {
             private readonly IProjectRepository _context;
@@ -25,7 +26,7 @@ namespace Application.Features.ProjectFeatures.Queries
             }
             public async Task<IEnumerable<Project>> Handle(GetActiveProjectByFreelancerIdQuery query, CancellationToken cancellationToken)
             {
-                var project = await _context.GetActiveByFreelancerIdAsync(query.Id);
+                var project = await _context.GetActiveByFreelancerIdAsync(query.Id, query.Status);
                 if (project == null)
                 {
                     throw new HttpResponseException(HttpStatusCode.NotFound);

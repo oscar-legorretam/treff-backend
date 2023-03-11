@@ -48,12 +48,12 @@ namespace WebApi.Controllers.v1
         /// <summary>
         /// Gets Project Entity by Freelancer Id.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="command"></param>
         /// <returns></returns>
-        [HttpGet("freelancer/{id}")]
-        public async Task<IActionResult> GetActiveProjectsByFreelancerId(int id)
+        [HttpPost("freelancer")]
+        public async Task<IActionResult> GetActiveProjectsByFreelancerId(GetActiveProjectByFreelancerIdQuery command)
         {
-            return Ok(await Mediator.Send(new GetActiveProjectByFreelancerIdQuery { Id = id }));
+            return Ok(await Mediator.Send(command));
         }
         /// <summary>
         /// Deletes Product Entity based on Id.
