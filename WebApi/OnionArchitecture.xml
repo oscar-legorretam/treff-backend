@@ -70,7 +70,14 @@
         </member>
         <member name="M:WebApi.Controllers.v1.FreelancerController.UpdatePassword(Application.Features.FreelancerFeatures.Commands.UpdateFreelancerPasswordCommand)">
             <summary>
-            Updates Freelancer Language.
+            Updates Freelancer Password.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.UpdateNotificationId(Application.Features.FreelancerFeatures.Commands.UpdateFreelancerNotificationIdCommand)">
+            <summary>
+            Updates Freelancer NotificationId.
             </summary>
             <param name="command"></param>
             <returns></returns>

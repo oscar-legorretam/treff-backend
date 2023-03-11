@@ -96,5 +96,20 @@ namespace Persistence.Repositories
 
             return data;
         }
+        public async Task<bool> UpdateNotificationId(int freelancerId, string notificationId)
+        {
+            var current = await _treffContext.Freelancers
+                .Where(e => e.Id == freelancerId)
+                .FirstOrDefaultAsync();
+
+            current.NotificationId = notificationId;
+
+            _treffContext.Update(current);
+
+            await _treffContext.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 }
