@@ -12,6 +12,7 @@ namespace Domain.Entities
         public NotificationType NotificationType { get; set; }
         public int IdNotificationType { get; set; }
         public bool Read { get; set; }
+        public DateTime Created { get; set; }
 
         public int ClientId { get; set; }
         [ForeignKey("ClientId")]

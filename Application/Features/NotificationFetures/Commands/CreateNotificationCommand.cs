@@ -38,6 +38,7 @@ namespace Application.Features.NotificationFeatures.Commands
                 notification.IdNotificationType = request.IdNotificationType;
                 notification.ClientId = request.ClientId;
                 notification.Read = false;
+                notification.Created = DateTime.Now;
 
                 var freelancer = await _contextFreelancer.GetByIdAsync(request.UserId);
 
