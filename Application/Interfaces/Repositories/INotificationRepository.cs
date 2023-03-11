@@ -11,5 +11,6 @@ namespace Application.Interfaces.Repositories
     {
         Task<IEnumerable<Notification>> GetNotificationByFreelancerIdAsync(int freelancerId, bool onlyUnread);
         Task<IEnumerable<Notification>> ClearNotificationsByFreelancerIdAsync(int freelancerId);
+        Task<Notification> GetNotificationByIdAsync(int id);
     }
 }

@@ -37,10 +37,11 @@ namespace WebApi.Controllers.v1
         [HttpPost("add")]
         public async Task Add(CreateNotificationCommand command)
         {
-            var freelancer = await Mediator.Send(command);
+            var notification = await Mediator.Send(command);
+            notification.Notification.Freelancer.Notifications = null;
             //message.Message = "se conectó al chat";
-            await _notificationHub.Clients.Client(freelancer.NotificationId.ToString())
-                .SendAsync("ReceiveNotification", command);
+            await _notificationHub.Clients.Client(notification.ConnectionId.ToString())
+                .SendAsync("ReceiveNotification", notification.Notification);
             // run some logic...
 
             //await _chatHub.Clients.Group(message.Group).SendAsync("", message);

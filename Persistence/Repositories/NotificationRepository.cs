@@ -20,6 +20,7 @@ namespace Persistence.Repositories
                 .Where(n => n.UserId == freelancerId
                     && n.Read == !onlyUnread)
                 .Include(n => n.Freelancer)
+                .OrderByDescending(n => n.Created)
                 .ToListAsync();
             return notifications;
         }
@@ -39,6 +40,15 @@ namespace Persistence.Repositories
             _treffContext.SaveChanges();
 
             return notifications;
+        }
+
+        public async Task<Notification> GetNotificationByIdAsync(int id)
+        {
+            var notification = await _treffContext.Notifications
+                .Where(n => n.Id == id)
+                .Include(n => n.Freelancer)
+                .FirstOrDefaultAsync();
+            return notification;
         }
     }
 }

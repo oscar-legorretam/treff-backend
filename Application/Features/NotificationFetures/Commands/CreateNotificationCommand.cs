@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Interfaces.Repositories;
 using Application.Mapper;
+using Application.Models;
 using Application.Utils;
 using Domain.Entities;
 using MediatR;
@@ -14,13 +15,13 @@ using System.Web.Http;
 
 namespace Application.Features.NotificationFeatures.Commands
 {
-    public class CreateNotificationCommand : IRequest<Freelancer>
+    public class CreateNotificationCommand : IRequest<CreateNotificationResponse>
     {
         public int UserId { get; set; }
         public NotificationType NotificationType { get; set; }
         public int IdNotificationType { get; set; }
         public int ClientId { get; set; }
-        public class CreateNotificationCommandHandler : IRequestHandler<CreateNotificationCommand, Freelancer>
+        public class CreateNotificationCommandHandler : IRequestHandler<CreateNotificationCommand, CreateNotificationResponse>
         {
             private readonly INotificationRepository _context;
             private readonly IFreelancerRepository _contextFreelancer;
@@ -30,7 +31,7 @@ namespace Application.Features.NotificationFeatures.Commands
                 _context = context;
                 _contextFreelancer = contextFreelancer;
             }
-            public async Task<Freelancer> Handle(CreateNotificationCommand request, CancellationToken cancellationToken)
+            public async Task<CreateNotificationResponse> Handle(CreateNotificationCommand request, CancellationToken cancellationToken)
             {
                 var notification = new Notification();
                 notification.UserId = request.UserId;
@@ -47,9 +48,14 @@ namespace Application.Features.NotificationFeatures.Commands
                     return null;
                 }
 
-                await _context.AddAsync(notification);
+                var data = await _context.AddAsync(notification);
 
-                return freelancer;
+
+                var response = new CreateNotificationResponse();
+                response.Notification = await _context.GetNotificationByIdAsync(data.Id);
+                response.ConnectionId = freelancer.NotificationId;
+
+                return response;
             }
         }
     }
