@@ -39,6 +39,7 @@ namespace Domain.Entities
         public Status Status { get; set; }
         public string Receipt { get; set; }
         public string ChatId { get; set; }
+        public string TransactionId { get; set; }
     }
 
     public enum Status
