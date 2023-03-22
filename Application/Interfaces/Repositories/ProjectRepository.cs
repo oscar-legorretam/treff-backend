@@ -10,6 +10,7 @@ namespace Application.Interfaces.Repositories
     public interface IProjectRepository : IRepository<Project>
     {
         Task<IEnumerable<Project>> GetActiveByFreelancerIdAsync(int freelancerId, int status);
+        Task<IEnumerable<Project>> GetActiveByUserIdAsync(int userId, int status);
         Task<Project> GetActiveByIdAsync(int id);
     }
 }

@@ -27,6 +27,19 @@ namespace Persistence.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Project>> GetActiveByUserIdAsync(int userId, int status)
+        {
+            return await _treffContext.Projects
+                .Include(p => p.Freelancer)
+                .Include(p => p.User)
+                .Include(p => p.Package)
+                .Include(p => p.Service)
+                .ThenInclude(s => s.Category)
+                .Where(p => p.UserId == userId &&
+                    p.Status == (Status)status)
+                .ToListAsync();
+        }
+
         public async Task<Project> GetActiveByIdAsync(int id)
         {
             return await _treffContext.Projects

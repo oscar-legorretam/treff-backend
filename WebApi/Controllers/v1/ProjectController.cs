@@ -56,6 +56,16 @@ namespace WebApi.Controllers.v1
             return Ok(await Mediator.Send(command));
         }
         /// <summary>
+        /// Gets Project Entity by User Id.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost("user")]
+        public async Task<IActionResult> GetActiveProjectsByUserId(GetActiveProjectByUserIdQuery command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+        /// <summary>
         /// Deletes Product Entity based on Id.
         /// </summary>
         /// <param name="id"></param>

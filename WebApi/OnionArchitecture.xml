@@ -165,6 +165,13 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.ProjectController.GetActiveProjectsByUserId(Application.Features.ProjectFeatures.Queries.GetActiveProjectByUserIdQuery)">
+            <summary>
+            Gets Project Entity by User Id.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.ProjectController.Delete(System.Int32)">
             <summary>
             Deletes Product Entity based on Id.
