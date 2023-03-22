@@ -136,6 +136,18 @@ namespace WebApi.Controllers.v1
         }
 
         /// <summary>
+        /// Updates Freelancer ChatId.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("updateChatId")]
+        public async Task<IActionResult> UpdateChatId(UpdateFreelancerChatIdCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+
+        /// <summary>
         /// Sens SMS validation.
         /// </summary>
         /// <param name="command"></param>

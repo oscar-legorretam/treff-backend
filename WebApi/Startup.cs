@@ -134,6 +134,7 @@ namespace WebApi
                 endpoints.MapControllers();
                 endpoints.MapHub<ChatHub>("/hubs/chat");
                 endpoints.MapHub<NotificationHub>("/hubs/notification");
+                endpoints.MapHub<MessageHub>("/hubs/message");
             });
         }
     }

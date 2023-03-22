@@ -82,6 +82,13 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.UpdateChatId(Application.Features.FreelancerFeatures.Commands.UpdateFreelancerChatIdCommand)">
+            <summary>
+            Updates Freelancer ChatId.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.FreelancerController.ValidateSms(Application.Features.FreelancerFeatures.Commands.ValidateSmsFreelancerCommand)">
             <summary>
             Sens SMS validation.

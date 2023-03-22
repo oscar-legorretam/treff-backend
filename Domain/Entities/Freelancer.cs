@@ -48,7 +48,8 @@ namespace Domain.Entities
 		[MaxLength(5200)]
 		public string Skills { get; set; }
 		public string NotificationId { get; set; }
-		public IEnumerable<FreelancerComment> FreelancerComments { get; set; }
+		public string ChatId { get; set; }
+        public IEnumerable<FreelancerComment> FreelancerComments { get; set; }
 		public IEnumerable<Education> Educations { get; set; }
 		public IEnumerable<Certification> Certifications { get; set; }
 		public IEnumerable<Language> Languages { get; set; }

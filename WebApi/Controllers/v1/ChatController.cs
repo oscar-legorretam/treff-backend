@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using WebApi.Hubs;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace WebApi.Controllers.v1
 {
@@ -19,10 +20,12 @@ namespace WebApi.Controllers.v1
     public class ChatController : BaseApiController
     {
         private readonly IHubContext<ChatHub> _chatHub;
+        private readonly IHubContext<MessageHub> _messageHub;
 
-        public ChatController(IHubContext<ChatHub> chatHub)
+        public ChatController(IHubContext<ChatHub> chatHub, IHubContext<MessageHub> messageHub)
         {
             _chatHub = chatHub;
+            _messageHub = messageHub;
         }
 
         //[HttpPost("messages")]
@@ -50,13 +53,17 @@ namespace WebApi.Controllers.v1
             request.UserId = message.UserId;
             request.Message = message.Message;
             request.ChatId = message.ChatId;
-            await Mediator.Send(request);
+            request.ToUserId = message.ToUserId;
+            var response = await Mediator.Send(request);
 
-            await _chatHub.Clients.Group(message.Group.ToString())
-                .SendAsync("UsersAdded", message);
-            // run some logic...
+            //await _chatHub.Clients.Group(message.Group.ToString())
+            //    .SendAsync("UsersAdded", message);
+            //// run some logic...
 
-            //await _chatHub.Clients.Group(message.Group).SendAsync("", message);
+            ////await _chatHub.Clients.Group(message.Group).SendAsync("", message);
+            ///
+            await _messageHub.Clients.Client(response.ConnectionId.ToString())
+                .SendAsync("ReceiveChatMessage", response.ChatMessage);
         }
 
         [HttpPost("getChat")]

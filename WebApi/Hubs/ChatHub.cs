@@ -42,6 +42,7 @@ namespace WebApi.Hubs
     {
         public string User { get; set; }
         public int UserId { get; set; }
+        public int ToUserId { get; set; }
         public int ChatId { get; set; }
 
         public string Message { get; set; }
