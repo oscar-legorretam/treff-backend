@@ -48,7 +48,7 @@ namespace Application.Features.ChatFeatures.Commands
 
                 var response = new CreateMessageResponse();
                 response.ChatMessage = chatMessage;
-                response.ConnectionId = freelancer.NotificationId;
+                response.ConnectionId = freelancer.ChatId;
 
                 return response;
             }
