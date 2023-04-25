@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Application.Features.CategoryFeatures.Queries;
 using Application.Features.ProductFeatures.Commands;
 using Application.Features.ProductFeatures.Queries;
+using Application.Features.ProjectFeature.Queries;
 using Application.Features.ProjectFeatures.Commands;
 using Application.Features.ProjectFeatures.Queries;
+using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -89,6 +91,20 @@ namespace WebApi.Controllers.v1
                 return BadRequest();
             }
             return Ok(await Mediator.Send(command));
+        }
+
+        [HttpGet("{freelancerId}/grouped-by-user")]
+        public async Task<IActionResult> GetProjectsGroupedByUserId(int freelancerId)
+        {
+            var query = new GetProjectsGroupedByUserIdQuery { FreelancerId = freelancerId };
+            var result = await Mediator.Send(query);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
     }
 }

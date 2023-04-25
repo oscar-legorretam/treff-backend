@@ -12,5 +12,6 @@ namespace Application.Interfaces.Repositories
         Task<IEnumerable<Project>> GetActiveByFreelancerIdAsync(int freelancerId, int status);
         Task<IEnumerable<Project>> GetActiveByUserIdAsync(int userId, int status);
         Task<Project> GetActiveByIdAsync(int id);
+        Task<List<Project>> GetProjectsGroupedByUserId(int freelancerId);
     }
 }

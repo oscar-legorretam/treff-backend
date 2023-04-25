@@ -10,6 +10,7 @@ namespace Application.Interfaces.Repositories
     public interface INotificationRepository : IRepository<Notification>
     {
         Task<IEnumerable<Notification>> GetNotificationByFreelancerIdAsync(int freelancerId, bool onlyUnread);
+        Task<IEnumerable<Notification>> GetNotificationByFreelancerIdAsync(int freelancerId);
         Task<IEnumerable<Notification>> ClearNotificationsByFreelancerIdAsync(int freelancerId);
         Task<Notification> GetNotificationByIdAsync(int id);
     }

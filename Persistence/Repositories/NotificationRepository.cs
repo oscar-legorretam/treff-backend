@@ -25,6 +25,16 @@ namespace Persistence.Repositories
             return notifications;
         }
 
+        public async Task<IEnumerable<Notification>> GetNotificationByFreelancerIdAsync(int freelancerId)
+        {
+            var notifications = await _treffContext.Notifications
+                .Where(n => n.UserId == freelancerId)
+                .Include(n => n.Freelancer)
+                .OrderByDescending(n => n.Created)
+                .ToListAsync();
+            return notifications;
+        }
+
         public async Task<IEnumerable<Notification>> ClearNotificationsByFreelancerIdAsync(int freelancerId)
         {
             var notifications = await _treffContext.Notifications

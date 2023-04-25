@@ -22,7 +22,7 @@ namespace Persistence.Repositories
                 .Include(p => p.Package)
                 .Include(p => p.Service)
                 .ThenInclude(s => s.Category)
-                .Where(p => p.FreelancerId == freelancerId && 
+                .Where(p => p.FreelancerId == freelancerId &&
                     p.Status == (Status)status)
                 .ToListAsync();
         }
@@ -50,6 +50,21 @@ namespace Persistence.Repositories
                 .ThenInclude(s => s.Category)
                 .Where(p => p.Id == id)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Project>> GetProjectsGroupedByUserId(int freelancerId)
+        {
+            var projects = await (_treffContext.Projects
+                .Include(p => p.Freelancer)
+                .Include(p => p.User)
+                .Include(p => p.Service)
+                .Include(p => p.Package)
+                .Where(p => p.UserId == freelancerId)
+                .ToListAsync());
+            //projects.GroupBy(p => p.UserId)
+            //.Select(group => group.First());
+
+            return projects;
         }
 
     }
