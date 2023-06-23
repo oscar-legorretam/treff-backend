@@ -19,11 +19,6 @@ namespace Persistence
     {
         public static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        configuration.GetConnectionString("DefaultConnection"),
-            //        b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -34,6 +29,7 @@ namespace Persistence
             services.AddTransient<IProjectRepository, ProjectRepository>();
             services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddTransient<INotificationRepository, NotificationRepository>();
+            services.AddTransient<IMessageMailRepository, MessageMailRepository>();
             services.AddTransient<IAzureBlobService, AzureBlobService>();
             services.AddTransient<ITwilioService, TwilioService>();
         }

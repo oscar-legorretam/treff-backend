@@ -2,39 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Context;
 
 namespace Persistence.Migrations.treff_v2
 {
     [DbContext(typeof(treff_v2Context))]
-    partial class treff_v2ContextModelSnapshot : ModelSnapshot
+    [Migration("20230516230203_AddServiceViews")]
+    partial class AddServiceViews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.31")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("Domain.Entities.Attachment", b =>
-                {
-                    b.Property<int>("AttachmentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("text");
-
-                    b.Property<int>("MessageId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AttachmentId");
-
-                    b.HasIndex("MessageId");
-
-                    b.ToTable("Attachments");
-                });
 
             modelBuilder.Entity("Domain.Entities.Category", b =>
                 {
@@ -400,41 +383,6 @@ namespace Persistence.Migrations.treff_v2
                     b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Message", b =>
-                {
-                    b.Property<int>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Body")
-                        .HasColumnType("text");
-
-                    b.Property<int>("FreelancerId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ParentMessageId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SentDateTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Subject")
-                        .HasColumnType("text");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MessageId");
-
-                    b.HasIndex("FreelancerId");
-
-                    b.HasIndex("ParentMessageId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Messages");
-                });
-
             modelBuilder.Entity("Domain.Entities.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -727,15 +675,6 @@ namespace Persistence.Migrations.treff_v2
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Attachment", b =>
-                {
-                    b.HasOne("Domain.Entities.Message", "Message")
-                        .WithMany("Attachments")
-                        .HasForeignKey("MessageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Domain.Entities.Category", b =>
                 {
                     b.HasOne("Domain.Entities.Category", "Parent")
@@ -838,25 +777,6 @@ namespace Persistence.Migrations.treff_v2
                     b.HasOne("Domain.Entities.Freelancer", "Freelancer")
                         .WithMany("Languages")
                         .HasForeignKey("FreelancerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.Message", b =>
-                {
-                    b.HasOne("Domain.Entities.Freelancer", "Freelancer")
-                        .WithMany()
-                        .HasForeignKey("FreelancerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Message", "ParentMessage")
-                        .WithMany("Replies")
-                        .HasForeignKey("ParentMessageId");
-
-                    b.HasOne("Domain.Entities.Freelancer", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -53,5 +53,6 @@ namespace Domain.Entities
 		public bool IsMexico { get; set; } = false;
 		public ICollection<ServiceImage> ServiceImages { get; set; }
 		public ICollection<Faq> Faqs { get; set; }
-	}
+        public ICollection<ServiceView> Views { get; set; }
+    }
 }

@@ -106,5 +106,18 @@ namespace WebApi.Controllers.v1
 
             return Ok(result);
         }
+        [HttpGet("{freelancerId}/views-by-user")]
+        public async Task<IActionResult> GetProjectsAndViewsByUserId(int freelancerId)
+        {
+            var query = new GetProjectsAndViewsByUserIdQuery { FreelancerId = freelancerId };
+            var result = await Mediator.Send(query);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }

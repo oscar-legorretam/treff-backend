@@ -124,7 +124,7 @@ namespace Persistence.Repositories
                 .Include(s => s.Freelancer)
                 .Include(s => s.Packages)
                 .Include(s => s.Category)
-                .Where(s =>  s.Freelancer.Active == true)
+                .Where(s => s.Freelancer.Active == true)
                 .OrderBy(s => s.Id)
                 .Take(limit)
                 .ToListAsync();
@@ -176,6 +176,7 @@ namespace Persistence.Repositories
                 .Include(s => s.Packages)
                 .Include(s => s.Category)
                 .Include(s => s.ServiceImages)
+                .Include(s => s.Views)
                 .Where(s => s.Id == id)
                 .FirstOrDefaultAsync();
 
@@ -212,6 +213,37 @@ namespace Persistence.Repositories
             _treffContext.SaveChanges();
 
             return total;
+        }
+
+        public async Task<int> AddViewAsync(ServiceView serviceView)
+        {
+            var service = await _treffContext.Services
+                .Where(s => s.Id == serviceView.ServiceId)
+                .Include(s => s.Views)
+                .FirstOrDefaultAsync();
+            if (service == null)
+            {
+                return 0;
+            }
+            if (service.Views == null)
+            {
+                service.Views = new List<ServiceView>();
+            }
+
+            var view = service.Views
+                .Where(v => v.UserId == serviceView.UserId)
+                .OrderByDescending(v => v.Date)
+                .FirstOrDefault();
+
+            DateTime now = DateTime.Now;
+            DateTime date = view == null ? DateTime.Now.AddDays(-1) : view.Date;
+            TimeSpan difference = now.Subtract(date);
+            if (difference.TotalMinutes > 30)
+            {
+                service.Views.Add(serviceView);
+                _treffContext.SaveChanges();
+            }
+            return 1;
         }
     }
 }

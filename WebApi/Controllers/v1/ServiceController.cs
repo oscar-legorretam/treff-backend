@@ -147,5 +147,15 @@ namespace WebApi.Controllers.v1
             }
             return Ok(await Mediator.Send(command));
         }
+        /// <summary>
+        /// Creates new service view
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost("views")]
+        public async Task<IActionResult> SetViewService(SetViewServiceCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
     }
 }

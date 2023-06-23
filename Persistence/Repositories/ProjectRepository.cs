@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Models;
 
 namespace Persistence.Repositories
 {
@@ -61,10 +62,34 @@ namespace Persistence.Repositories
                 .Include(p => p.Package)
                 .Where(p => p.UserId == freelancerId)
                 .ToListAsync());
-            //projects.GroupBy(p => p.UserId)
-            //.Select(group => group.First());
 
             return projects;
+        }
+
+        public async Task<ProjectAndViewsResponse> GetProjectsAndViewsByUserId(int freelancerId)
+        {
+
+            var projects = await (_treffContext.Projects
+                .Include(p => p.Freelancer)
+                .Include(p => p.User)
+                .Include(p => p.Service)
+                .Include(p => p.Package)
+                .Where(p => p.UserId == freelancerId)
+                .ToListAsync());
+
+            var views = await (_treffContext.Services
+                .Include(v => v.Views)
+                .Where(v => v.FreelancerId == freelancerId)
+                .Select(s => s.Views.Count)
+                .ToListAsync());
+
+            var response = new ProjectAndViewsResponse()
+            {
+                projects = projects.Count,
+                views = views.Sum(views => views)
+            };
+
+            return response;
         }
 
     }

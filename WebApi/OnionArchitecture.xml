@@ -256,6 +256,13 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.ServiceController.SetViewService(Application.Features.ServiceFeatures.Commands.SetViewServiceCommand)">
+            <summary>
+            Creates new service view
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="T:WebApi.API.Filters.ExceptionFilter">
             <summary>
             Manages the exceptions in controllers

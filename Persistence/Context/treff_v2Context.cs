@@ -34,6 +34,10 @@ namespace Persistence.Context
         public virtual DbSet<Chat> Chats { get; set; }
         public virtual DbSet<ChatMessage> ChatMessages { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
+        public virtual DbSet<ServiceView> ServiceViews { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Attachment> Attachments { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
