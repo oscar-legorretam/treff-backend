@@ -92,7 +92,7 @@ namespace WebApi
         {
             app.UseCors(options =>
             {
-                options.WithOrigins("http://localhost:3000", "https://maxvazquezg.github.io/", "https://maxvazquezg.github.io/treff-site");
+                options.WithOrigins("http://localhost:3000", "https://localhost:3000", "https://maxvazquezg.github.io/", "https://maxvazquezg.github.io/treff-site");
                 options.AllowAnyMethod();
                 options.AllowAnyHeader();
                 options.AllowCredentials();
