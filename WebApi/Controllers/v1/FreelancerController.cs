@@ -182,5 +182,17 @@ namespace WebApi.Controllers.v1
         {
             return Ok(await Mediator.Send(command));
         }
+
+        /// <summary>
+        /// Login Freelancer third party.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("loginThirdParty")]
+        public async Task<IActionResult> LoginThirdParty(CreateFreelancerThirdPartyCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace Application.Mapper
             CreateMap<Freelancer, CreateFreelancerCommand>().ReverseMap();
             CreateMap<Freelancer, UpdateFreelancerCommand>().ReverseMap();
             CreateMap<Freelancer, LoginFreelancerCommand>().ReverseMap();
+            CreateMap<Freelancer, CreateFreelancerThirdPartyCommand>().ReverseMap();
         }
     }
 }

@@ -58,6 +58,21 @@ namespace Persistence.Repositories
             return freelancerResponse;
         }
 
+        public async Task<Freelancer> LoginThirdPartyAsync(Freelancer freelancer)
+        {
+            var freelancerResponse = await _treffContext.Freelancers
+                .Where(f => f.FacebookId == freelancer.FacebookId)
+                .FirstOrDefaultAsync();
+
+            if (freelancerResponse == null)
+            {
+                var response = await AddAsync(freelancer);
+                return response;
+            }
+
+            return freelancerResponse;
+        }
+
         public async Task<List<Education>> UpdateEducation(int freelancerId, List<Education> data)
         {
             var current = await _treffContext.Educations.Where(e => e.FreelancerId == freelancerId).ToListAsync();

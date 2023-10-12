@@ -110,6 +110,13 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.LoginThirdParty(Application.Features.FreelancerFeatures.Commands.CreateFreelancerThirdPartyCommand)">
+            <summary>
+            Login Freelancer third party.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.ProductController.Create(Application.Features.ProductFeatures.Commands.CreateProductCommand)">
             <summary>
             Creates a New Product.

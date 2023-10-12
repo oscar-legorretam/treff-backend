@@ -16,5 +16,6 @@ namespace Application.Interfaces.Repositories
         Task<List<Certification>> UpdateCertification(int freelancerId, List<Certification> data);
         Task<List<Language>> UpdateLanguage(int freelancerId, List<Language> data);
         Task<bool> UpdateNotificationId(int freelancerId, string notificationId);
+        Task<Freelancer> LoginThirdPartyAsync(Freelancer freelancer);
     }
 }

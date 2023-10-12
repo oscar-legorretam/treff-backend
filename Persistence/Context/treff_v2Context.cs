@@ -44,7 +44,7 @@ namespace Persistence.Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySQL("Server=127.0.0.1;Database=treff_v2;Uid=root;");
+                optionsBuilder.UseMySQL("Server=treff-db.mysql.database.azure.com;Database=treff_v2;Uid=treffadmin;pwd=WindWaker1*;SslMode=Preferred;");
             }
         }
 
