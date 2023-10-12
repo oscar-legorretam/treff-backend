@@ -29,8 +29,8 @@ namespace Application.Features.FreelancerFeatures.Commands
             {
                 var freelancerEntitiy = FreelancerMapper.Mapper.Map<Freelancer>(request);
                 freelancerEntitiy.Password = "";
-                await _context.LoginThirdPartyAsync(freelancerEntitiy);
-                return freelancerEntitiy;
+                var response = await _context.LoginThirdPartyAsync(freelancerEntitiy);
+                return response;
             }
         }
     }
