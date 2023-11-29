@@ -22,6 +22,7 @@ using AutoMapper;
 using MAD.Infrastructure.Services;
 using Persistence.Services;
 using WebApi.Hubs;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace WebApi
 {
@@ -60,7 +61,12 @@ namespace WebApi
             services.AddMediatR(Assembly.GetExecutingAssembly());
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<treff_v2Context>(m =>
-                    m.UseMySQL(connectionString),
+            {
+                m.UseMySQL(connectionString);
+                m.ConfigureWarnings(warnings =>
+
+            warnings.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
+            },
                 ServiceLifetime.Transient);
             services.Configure<AzureStorageConfig>(opts => Configuration.GetSection("AzureStorageConfig").Bind(opts));
             services.Configure<TwilioConfig>(opts => Configuration.GetSection("TwilioConfig").Bind(opts));
