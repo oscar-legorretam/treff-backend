@@ -245,5 +245,35 @@ namespace Persistence.Repositories
             }
             return 1;
         }
+
+        public async Task<List<Service>> FilterServicesAsync(string serviceName, bool byService, int categoryId, bool? expressDelivery)
+        {
+            var services = await _treffContext.Services
+                .Include(s => s.Freelancer)
+                .Include(s => s.Packages)
+                .Include(s => s.Category)
+                .Where(s => s.Freelancer.Active == true)
+                .OrderBy(s => s.Id)
+                .ToListAsync();
+
+            if (!string.IsNullOrEmpty(serviceName))
+            {
+                services = services.Where(s => s.Name.ToLower().Contains(serviceName.ToLower())).ToList();
+            }
+
+            if (categoryId > 0)
+            {
+                services = services.Where(s => s.CategoryMainId == categoryId).ToList();
+            }
+
+            if (expressDelivery != null)
+            {
+                services = services.Where(s => s.ExpressDelivery == expressDelivery).ToList();
+            }
+
+            services.ForEach(x => x.Packages = x.Packages.OrderBy(y => y.Cost).ToList());
+
+            return services;
+        }
     }
 }

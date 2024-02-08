@@ -129,7 +129,7 @@ namespace WebApi.Controllers.v1
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> OnPostUploadAsync(CreateServiceCommand command)
-        { 
+        {
             return Ok(await Mediator.Send(command));
         }
         /// <summary>
@@ -154,6 +154,17 @@ namespace WebApi.Controllers.v1
         /// <returns></returns>
         [HttpPost("views")]
         public async Task<IActionResult> SetViewService(SetViewServiceCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+
+        /// <summary>
+        /// Filer services
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost("filter")]
+        public async Task<IActionResult> FilterServices(FilterServicesCommand command)
         {
             return Ok(await Mediator.Send(command));
         }

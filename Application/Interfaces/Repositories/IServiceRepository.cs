@@ -17,5 +17,6 @@ namespace Application.Interfaces.Repositories
         Task<int> DeleteImagesServiceByIdAsync(int id);
         Task<int> DeleteFaqsServiceByIdAsync(int id);
         Task<int> AddViewAsync(ServiceView serviceView);
+        Task<List<Service>> FilterServicesAsync(string serviceName, bool byService, int categoryId, bool? expressDelivery);
     }
 }

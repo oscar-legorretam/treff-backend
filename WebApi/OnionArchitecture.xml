@@ -270,6 +270,13 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.ServiceController.FilterServices(Application.Features.ServiceFeatures.Commands.FilterServicesCommand)">
+            <summary>
+            Filer services
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="T:WebApi.API.Filters.ExceptionFilter">
             <summary>
             Manages the exceptions in controllers
