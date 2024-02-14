@@ -19,6 +19,9 @@ namespace Application.Features.ServiceFeatures.Commands
         public bool ByService { get; set; }
         public int CategoryId { get; set; }
         public bool? ExpressDelivery { get; set; }
+        public int FilterOption { get; set; }
+        public bool? Verified { get; set; }
+        public bool? Invoice { get; set; }
 
         public class FilterServicesCommandHandler : IRequestHandler<FilterServicesCommand, List<Service>>
         {
@@ -31,7 +34,7 @@ namespace Application.Features.ServiceFeatures.Commands
             }
             public async Task<List<Service>> Handle(FilterServicesCommand command, CancellationToken cancellationToken)
             {
-                var response = await _context.FilterServicesAsync(command.ServiceName, command.ByService, command.CategoryId, command.ExpressDelivery);
+                var response = await _context.FilterServicesAsync(command.ServiceName, command.ByService, command.CategoryId, command.ExpressDelivery, command.Verified, command.Invoice, command.FilterOption);
                 return response;
             }
         }

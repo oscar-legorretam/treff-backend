@@ -6,8 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
-    public class Service
-    {
+	public class Service
+	{
 		[Key]
 		public int Id { get; set; }
 
@@ -51,8 +51,9 @@ namespace Domain.Entities
 		[Required]
 		public string Requirements { get; set; }
 		public bool IsMexico { get; set; } = false;
+		public DateTime CreatedAt { get; set; } = DateTime.Now;
 		public ICollection<ServiceImage> ServiceImages { get; set; }
 		public ICollection<Faq> Faqs { get; set; }
-        public ICollection<ServiceView> Views { get; set; }
-    }
+		public ICollection<ServiceView> Views { get; set; }
+	}
 }

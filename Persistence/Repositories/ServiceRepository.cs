@@ -246,7 +246,7 @@ namespace Persistence.Repositories
             return 1;
         }
 
-        public async Task<List<Service>> FilterServicesAsync(string serviceName, bool byService, int categoryId, bool? expressDelivery)
+        public async Task<List<Service>> FilterServicesAsync(string serviceName, bool byService, int categoryId, bool? expressDelivery, bool? verified, bool? invoice, int filterOption = 0)
         {
             var services = await _treffContext.Services
                 .Include(s => s.Freelancer)
@@ -271,7 +271,38 @@ namespace Persistence.Repositories
                 services = services.Where(s => s.ExpressDelivery == expressDelivery).ToList();
             }
 
+            if (verified != null)
+            {
+                services = services.Where(s => s.Freelancer.Verified == verified).ToList();
+            }
+
+            if (invoice != null)
+            {
+                services = services.Where(s => s.Freelancer.Invoice == invoice).ToList();
+            }
+
             services.ForEach(x => x.Packages = x.Packages.OrderBy(y => y.Cost).ToList());
+            //////////////// 0 = Default, 1 = Price High to Low, 2 = Price Low to High, 3 = Score, 4 = Date High to Low, 5 = Date Low to High ////////////////
+            if (filterOption == 1)
+            {
+                services = services.OrderByDescending(s => s.Packages.FirstOrDefault().Cost).ToList();
+            }
+            else if (filterOption == 2)
+            {
+                services = services.OrderBy(s => s.Packages.FirstOrDefault().Cost).ToList();
+            }
+            else if (filterOption == 3)
+            {
+                services = services.OrderByDescending(s => s.Freelancer.Score).ToList();
+            }
+            else if (filterOption == 4)
+            {
+                services = services.OrderByDescending(s => s.CreatedAt).ToList();
+            }
+            else if (filterOption == 5)
+            {
+                services = services.OrderBy(s => s.CreatedAt).ToList();
+            }
 
             return services;
         }
