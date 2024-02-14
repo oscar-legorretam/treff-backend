@@ -43,8 +43,8 @@ namespace Application.Features.ProjectFeatures.Commands
             public async Task<int> Handle(CreateProjectCommand command, CancellationToken cancellationToken)
             {
                 // Replace with your API keys
-                string merchantId = "mqq6q0cywvcob5dut6in";
-                string apiKey = "sk_6f73a421e6f1464a84e50e9ec980bb2a";
+                string merchantId = "mtxusmriuuvmydfrzozh";
+                string apiKey = "sk_3cebad6306e14218adece6cd458e9d4f";
                 bool isProduction = false; // use true for production
                 var transactonId = ""; // use true for production
 
