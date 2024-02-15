@@ -50,5 +50,11 @@ namespace WebApi.Controllers.v1
             var userData = await Mediator.Send(query);
             return Ok(userData);
         }
+        [HttpPost("help")]
+        public async Task<ActionResult> SendEmail(SendHelpEmailCommand command)
+        {
+            var response = await Mediator.Send(command);
+            return Ok(response);
+        }
     }
 }
