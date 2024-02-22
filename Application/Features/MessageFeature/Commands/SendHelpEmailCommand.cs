@@ -38,7 +38,8 @@ namespace Application.Features.MessageFeature.Commands
 
                 var Description = @"<h1>Nombre: " + request.Name + "</h1>" +
                     "<p>Correo: " + request.Email + "</p>" +
-                    "<p>Descripcion: " + request.Description + "</p>";
+                    "<p>Descripcion: " + request.Description + "</p>"+
+                    (request.IsFreelancer ? "<p>Es freelancer</p>" : "<p>Es contratante</p>");
 
                 // email.SendEmail(Description, "maxvazquezg@hotmail.com", Subject);
                 email.SendEmail(Description, "hola.treff@gmail.com", Subject);
