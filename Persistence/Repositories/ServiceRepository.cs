@@ -274,9 +274,12 @@ namespace Persistence.Repositories
                     .ToList();
             }
 
-            if (!string.IsNullOrEmpty(serviceName))
+            if (!string.IsNullOrEmpty(serviceName) && byService)
             {
                 services = services.Where(s => s.Name.ToLower().Contains(serviceName.ToLower())).ToList();
+            }
+            else {
+                services = services.Where(s => s.Freelancer.Name.ToLower().Contains(serviceName.ToLower())).ToList();
             }
 
             if (categoryId > 0)
