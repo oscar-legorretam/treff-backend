@@ -248,13 +248,31 @@ namespace Persistence.Repositories
 
         public async Task<List<Service>> FilterServicesAsync(string serviceName, bool byService, int categoryId, bool? expressDelivery, bool? verified, bool? invoice, int filterOption = 0)
         {
-            var services = await _treffContext.Services
-                .Include(s => s.Freelancer)
-                .Include(s => s.Packages)
-                .Include(s => s.Category)
-                .Where(s => s.Freelancer.Active == true)
-                .OrderBy(s => s.Id)
-                .ToListAsync();
+            var services = new List<Service>();
+
+            if (byService)
+            {
+                services = await _treffContext.Services
+                    .Include(s => s.Freelancer)
+                    .Include(s => s.Packages)
+                    .Include(s => s.Category)
+                    .Where(s => s.Freelancer.Active == true)
+                    .OrderBy(s => s.Id)
+                    .ToListAsync();
+            }
+            else
+            {
+                services = _treffContext.Services
+                    .Include(s => s.Freelancer)
+                    .Include(s => s.Packages)
+                    .Include(s => s.Category)
+                    .Where(s => s.Freelancer.Active == true)
+                    .AsEnumerable() // Se realiza AsEnumerable para traer los datos a memoria y poder operar sobre ellos
+                    .GroupBy(s => s.FreelancerId) // Agrupa por FreelancerID
+                    .Select(g => g.First()) // Selecciona el primer servicio de cada grupo
+                    .OrderBy(s => s.Id) // Ordena los servicios por su Id
+                    .ToList();
+            }
 
             if (!string.IsNullOrEmpty(serviceName))
             {
