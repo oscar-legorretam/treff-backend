@@ -18,6 +18,7 @@ namespace Application.Features.FreelancerFeatures.Commands
         public string Mail { get; set; }
         public string Password { get; set; }
         public bool IsAdmin { get; set; } = false;
+        public bool IsFreelancer { get; set; } = true;
         public class CreateFreelancerCommandHandler : IRequestHandler<CreateFreelancerCommand, Freelancer>
         {
             private readonly IFreelancerRepository _context;

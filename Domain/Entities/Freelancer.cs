@@ -6,8 +6,8 @@ using System.ComponentModel;
 
 namespace Domain.Entities
 {
-    public class Freelancer
-    {
+	public class Freelancer
+	{
 		[Key]
 		public int Id { get; set; }
 
@@ -51,7 +51,8 @@ namespace Domain.Entities
 		public string ChatId { get; set; }
 		public string FacebookId { get; set; }
 		public bool IsAdmin { get; set; } = false;
-        public IEnumerable<FreelancerComment> FreelancerComments { get; set; }
+		public bool IsFreelancer { get; set; } = true;
+		public IEnumerable<FreelancerComment> FreelancerComments { get; set; }
 		public IEnumerable<Education> Educations { get; set; }
 		public IEnumerable<Certification> Certifications { get; set; }
 		public IEnumerable<Language> Languages { get; set; }

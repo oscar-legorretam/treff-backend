@@ -31,6 +31,7 @@ namespace Application.Features.FreelancerFeatures.Commands
         public double Score { get; set; }
         public string Skills { get; set; }
         public bool IsAdmin { get; set; } = false;
+        public bool IsFreelancer { get; set; } = true;
         public class UpdateFreelancerCommandHandler : IRequestHandler<UpdateFreelancerCommand, Freelancer>
         {
             private readonly IFreelancerRepository _context;
