@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using Application.Features.CategoryFeatures.Queries;
 using Application.Features.ChatFeatures.Commands;
 using Application.Features.NotificationFeatures.Commands;
-using Application.Features.ProductFeatures.Commands;
-using Application.Features.ProductFeatures.Queries;
 using Application.Features.ProjectFeatures.Commands;
 using Application.Features.ProjectFeatures.Queries;
 using Microsoft.AspNetCore.Http;

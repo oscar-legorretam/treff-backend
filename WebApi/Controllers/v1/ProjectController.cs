@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.CategoryFeatures.Queries;
-using Application.Features.ProductFeatures.Commands;
-using Application.Features.ProductFeatures.Queries;
 using Application.Features.ProjectFeature.Queries;
 using Application.Features.ProjectFeatures.Commands;
 using Application.Features.ProjectFeatures.Queries;
@@ -67,31 +65,7 @@ namespace WebApi.Controllers.v1
         {
             return Ok(await Mediator.Send(command));
         }
-        /// <summary>
-        /// Deletes Product Entity based on Id.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            return Ok(await Mediator.Send(new DeleteProductByIdCommand { Id = id }));
-        }
-        /// <summary>
-        /// Updates the Product Entity based on Id.   
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="command"></param>
-        /// <returns></returns>
-        [HttpPut("[action]")]
-        public async Task<IActionResult> Update(int id, UpdateProductCommand command)
-        {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
-            return Ok(await Mediator.Send(command));
-        }
+
 
         [HttpGet("{freelancerId}/grouped-by-user")]
         public async Task<IActionResult> GetProjectsGroupedByUserId(int freelancerId)

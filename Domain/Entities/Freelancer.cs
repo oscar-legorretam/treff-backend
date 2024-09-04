@@ -50,6 +50,7 @@ namespace Domain.Entities
 		public string NotificationId { get; set; }
 		public string ChatId { get; set; }
 		public string FacebookId { get; set; }
+		public bool IsAdmin { get; set; } = false;
         public IEnumerable<FreelancerComment> FreelancerComments { get; set; }
 		public IEnumerable<Education> Educations { get; set; }
 		public IEnumerable<Certification> Certifications { get; set; }

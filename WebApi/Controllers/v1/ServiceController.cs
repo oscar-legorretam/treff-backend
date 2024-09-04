@@ -4,8 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.CategoryFeatures.Queries;
-using Application.Features.ProductFeatures.Commands;
-using Application.Features.ProductFeatures.Queries;
 using Application.Features.ServiceFeatures.Commands;
 using Application.Features.ServiceFeatures.Queries;
 using Microsoft.AspNetCore.Http;
