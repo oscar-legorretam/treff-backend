@@ -27,7 +27,17 @@ namespace WebApi.Controllers.v1
         [Route("services/{id}")]
         public async Task<IActionResult> GetByCategoryId(int id)
         {
-            return Ok(await Mediator.Send(new GetAllServicesByFreelancerIdQuery { FreelancerId = id}));
+            return Ok(await Mediator.Send(new GetAllServicesByFreelancerIdQuery { FreelancerId = id }));
+        }
+        /// <summary>
+        /// Gets All Admins.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("admin")]
+        public async Task<IActionResult> GetAllAdmins()
+        {
+            return Ok(await Mediator.Send(new GetAllAdminsQuery()));
         }
         /// <summary>
         /// Creates a New Freelancer.
@@ -98,7 +108,7 @@ namespace WebApi.Controllers.v1
             }
             return Ok(await Mediator.Send(command));
         }
-        
+
         /// <summary>
         /// Updates Freelancer Language.
         /// </summary>
@@ -110,7 +120,7 @@ namespace WebApi.Controllers.v1
         {
             return Ok(await Mediator.Send(command));
         }
-        
+
         /// <summary>
         /// Updates Freelancer Password.
         /// </summary>

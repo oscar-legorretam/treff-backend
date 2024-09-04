@@ -18,6 +18,12 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.GetAllAdmins">
+            <summary>
+            Gets All Admins.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.FreelancerController.Create(Application.Features.FreelancerFeatures.Commands.CreateFreelancerCommand)">
             <summary>
             Creates a New Freelancer.
@@ -239,7 +245,7 @@
             </summary>
         </member>
         <member name="M:WebApi.API.Filters.ExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
-            <summary>
+            <summary>   
             Create an ExceptionContext if an Exceptions is throwed
             </summary>
             <param name="context"></param>

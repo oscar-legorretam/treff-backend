@@ -11,7 +11,7 @@ namespace WebApi.API.Filters
     /// </summary>
     public class ExceptionFilter : IExceptionFilter
     {
-        /// <summary>
+        /// <summary>   
         /// Create an ExceptionContext if an Exceptions is throwed
         /// </summary>
         /// <param name="context"></param>

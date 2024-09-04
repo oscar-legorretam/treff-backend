@@ -17,5 +17,6 @@ namespace Application.Interfaces.Repositories
         Task<List<Language>> UpdateLanguage(int freelancerId, List<Language> data);
         Task<bool> UpdateNotificationId(int freelancerId, string notificationId);
         Task<Freelancer> LoginThirdPartyAsync(Freelancer freelancer);
+        Task<List<Freelancer>> GetAllAdminsAsync();
     }
 }

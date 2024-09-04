@@ -125,6 +125,14 @@ namespace Persistence.Repositories
 
             return true;
         }
+        public async Task<List<Freelancer>> GetAllAdminsAsync()
+        {
+            var admins = await _treffContext.Freelancers
+                .Where(f => f.IsAdmin)
+                .ToListAsync();
+
+            return admins;
+        }
 
     }
 }
