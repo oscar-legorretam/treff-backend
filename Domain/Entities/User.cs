@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class User
-    {
-        public int Id { get; set; }
+	public class User
+	{
+		public int Id { get; set; }
 		[Required]
 		[MaxLength(500)]
 		public string Name { get; set; }
@@ -30,5 +30,6 @@ namespace Domain.Entities
 		[Required]
 		public bool Verified { get; set; } = false;
 		public string Photo { get; set; }
+		public bool IsAdmin { get; set; } = false;
 	}
 }

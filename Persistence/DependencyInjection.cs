@@ -20,7 +20,7 @@ namespace Persistence
         public static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            // services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IServiceRepository, ServiceRepository>();

@@ -1,9 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Migrations\treff_v2\20230202165915_AddChatMessages.cs" />
     <Compile Remove="Migrations\treff_v2\20230202165915_AddChatMessages.Designer.cs" />
