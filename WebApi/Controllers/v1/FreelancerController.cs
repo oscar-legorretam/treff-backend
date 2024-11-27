@@ -61,6 +61,17 @@ namespace WebApi.Controllers.v1
             return Ok(await Mediator.Send(command));
         }
         /// <summary>
+        /// Logins Freelancer by Principal.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("loginByPrincipal")]
+        public async Task<IActionResult> LoginByPrincipal(LoginFreelancerByPrincipalCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+        /// <summary>
         /// Updates Freelancer Education.
         /// </summary>
         /// <param name="command"></param>

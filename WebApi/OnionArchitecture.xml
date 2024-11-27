@@ -38,6 +38,13 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.v1.FreelancerController.LoginByPrincipal(Application.Features.FreelancerFeatures.Commands.LoginFreelancerByPrincipalCommand)">
+            <summary>
+            Logins Freelancer by Principal.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.FreelancerController.UpdateEducations(Application.Features.FreelancerFeatures.Commands.UpdateFreelancerEducationCommand)">
             <summary>
             Updates Freelancer Education.

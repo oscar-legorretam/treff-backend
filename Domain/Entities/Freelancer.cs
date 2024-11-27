@@ -26,6 +26,7 @@ namespace Domain.Entities
 		[Required]
 		[MaxLength(100)]
 		public string Password { get; set; }
+		public string IcpPrincipal { get; set; }
 
 		[Required]
 		public bool Active { get; set; } = true;

@@ -58,6 +58,32 @@ namespace Persistence.Repositories
             return freelancerResponse;
         }
 
+        public async Task<Freelancer> GetUserByPrinicipalAsync(string principal)
+        {
+            var freelancerResponse = await _treffContext.Freelancers
+                .Where(f => f.IcpPrincipal == principal)
+                .FirstOrDefaultAsync();
+
+            if (freelancerResponse == null)
+            {
+                var newFreelancer = new Freelancer
+                {
+                    IcpPrincipal = principal,
+                    Mail = principal,
+                    Password = "123456",
+                    Active = true,
+                    Verified = true,
+                    Invoice = false,
+                    IsFreelancer = true,
+                    ActiveDate = DateTime.Now,
+                    Name = "",
+                };
+                await AddAsync(newFreelancer);
+                return newFreelancer;
+            }
+            return freelancerResponse;
+        }
+
         public async Task<Freelancer> LoginThirdPartyAsync(Freelancer freelancer)
         {
             var freelancerResponse = await _treffContext.Freelancers

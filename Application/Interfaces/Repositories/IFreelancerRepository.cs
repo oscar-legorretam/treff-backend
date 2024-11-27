@@ -18,5 +18,6 @@ namespace Application.Interfaces.Repositories
         Task<bool> UpdateNotificationId(int freelancerId, string notificationId);
         Task<Freelancer> LoginThirdPartyAsync(Freelancer freelancer);
         Task<List<Freelancer>> GetAllAdminsAsync();
+        Task<Freelancer> GetUserByPrinicipalAsync(string principal);
     }
 }
