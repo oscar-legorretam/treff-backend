@@ -1,5 +1,5 @@
-# Use .NET 8 SDK for building
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Use .NET 7 SDK for building
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 
 # Copy solution and project files
@@ -18,8 +18,8 @@ COPY . .
 # Build and publish the application
 RUN dotnet publish WebApi/WebApi.csproj -c Release -o /app/publish /p:UseAppHost=false
 
-# Use .NET 8 ASP.NET Core runtime for final image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+# Use .NET 7 ASP.NET Core runtime for final image
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /app
 
 ENV ASPNETCORE_URLS=http://+:8080
