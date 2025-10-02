@@ -8,8 +8,8 @@ ENV ASPNETCORE_URLS=http://+:8080
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 EXPOSE 8080
 
-# Create non-root user
-RUN addgroup -S app && adduser -S app -G app
+# Create non-root user (check if group exists before creating)
+RUN getent group app || addgroup -S app && adduser -S app -G app
 WORKDIR /app
 
 # ---- Build image ----
@@ -46,7 +46,7 @@ RUN chown -R app:app /app
 USER app
 
 # (Optional) healthcheck — replace /health with your endpoint if available
-# HEALTHCHECK --interval=30s --timeout=3s --start-period=20s --retries=3 \
+# HEALTHCHECK --interval=30s --timeout=3s --start-period=20s --retries=3 
 #   CMD wget -qO- http://127.0.0.1:8080/health || exit 1
 
 ENTRYPOINT ["dotnet", "WebApi.dll"]
