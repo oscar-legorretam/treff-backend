@@ -23,7 +23,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /app
 
 ENV ASPNETCORE_URLS=http://+:8080
-EXPOSE 8080
+EXPOSE 8080:8088
 
 # Create a non-root user for security
 RUN getent group app || addgroup --system app; \
