@@ -9,7 +9,8 @@ ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 EXPOSE 8080
 
 # Create non-root user (check if group exists before creating)
-RUN getent group app || addgroup -S app && adduser -S app -G app
+RUN getent group app || addgroup -S app; \
+    getent passwd app || adduser -S app -G app
 WORKDIR /app
 
 # ---- Build image ----
