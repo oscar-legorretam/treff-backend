@@ -26,8 +26,8 @@ ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
 # Create a non-root user for security
-RUN getent group app || addgroup -S app; \
-    getent passwd app || adduser -S app -G app
+RUN getent group app || addgroup --system app; \
+    getent passwd app || adduser --system app --ingroup app
 # Copy published app from build image
 COPY --from=build /app/publish ./
 
